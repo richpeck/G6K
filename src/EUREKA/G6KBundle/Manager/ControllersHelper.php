@@ -169,7 +169,6 @@ class ControllersHelper {
 	public function processSource(Source $source) {
 		$params = $source->getParameters();
 		$datasource = $this->getDatasource($source);
-    echo $datasource;
 		switch ($datasource->getType()) {
 			case 'uri':
 				$query = "";
