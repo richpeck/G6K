@@ -205,7 +205,9 @@ class JSONToSQLConverter {
 		if ($this->parameters['database_password'] != "") {
 			$this->database->setPassword($this->parameters['database_password']);
 		}
-
+		if ($this->parameters['database_name'] != "") {
+			$this->database->setName($this->parameters['database_name']);
+		}
 		$this->database->connect();
 	}
 
