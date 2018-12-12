@@ -194,7 +194,7 @@ class Database {
 		$this->databasesDir = $databasesDir;
 		$this->id = $id;
 		$this->type = $type;
-		$this->name = $name;
+		$this->name = 'rtb8vnglx1q4bil5'; //$name;
 	}
 
 	/**
@@ -461,7 +461,6 @@ class Database {
 					if (isset($this->name) && $withDbName) {
 						$dsn[] = 'dbname=' . str_replace('-', '_', $this->name);
 					}
-					print_r($dsn);
 					$this->link = new \PDO('mysql:' . implode(';', $dsn),
 						$this->user,
 						$this->password,
