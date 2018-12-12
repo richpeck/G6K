@@ -1,10 +1,10 @@
 parameters:
     database_driver:    pdo_pgsql
-    database_host:      ec2-54-246-117-62.eu-west-1.compute.amazonaws.com
+    database_host:      'ec2-54-246-117-62.eu-west-1.compute.amazonaws.com'
     database_port:      5432
-    database_name:      df7dsgeudiff7u
-    database_user:      ypvwwyqdpcnwiy
-    database_password:  b40564a6069ab56897f9cb039cfa47703621dc8bf503814b4d434dc8760a74c5
+    database_name:      'df7dsgeudiff7u'
+    database_user:      'ypvwwyqdpcnwiy'
+    database_password:  'b40564a6069ab56897f9cb039cfa47703621dc8bf503814b4d434dc8760a74c5'
     database_path: %kernel.root_dir%/../src/EUREKA/G6KBundle/Resources/data/databases/g6k.db
 
     mailer_transport:  smtp
