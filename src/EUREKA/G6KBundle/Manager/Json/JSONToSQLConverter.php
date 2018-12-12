@@ -205,7 +205,8 @@ class JSONToSQLConverter {
 		if ($this->parameters['database_password'] != "") {
 			$this->database->setPassword($this->parameters['database_password']);
 		}
-		$this->database->connect(false);
+
+		$this->database->connect();
 	}
 
 	/**
@@ -243,7 +244,6 @@ class JSONToSQLConverter {
 			case 'pdo_mysql':
 				$dbtype = 'mysqli';
 				$dbschema = $name;
-				print_r($dbschema);
 				$this->connectDatabase($dbschema, $dbtype);
 				$this->database->exec("create database if not exists " . str_replace('-', '_', $dbschema) . " character set utf8");
 				$this->database->setConnected(false);
