@@ -200,10 +200,23 @@ class ScriptHandler
 		$datasources = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><DataSources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/DataSources.xsd"><Databases></Databases></DataSources>', LIBXML_NOWARNING);
 		$helper = new DatasourcesHelper($datasources);
 		$dsid = 0;
-		$event->getIO()->write($databasesDir);
 		$dom = $helper->makeDatasourceDom($schemafile, $datafile, $parameters, $databasesDir, $dsid);
 		$xml = $dom->saveXML(null, LIBXML_NOEMPTYTAG);
-
+		$dom = new \DOMDocument();
+		$dom->preserveWhiteSpace  = false;
+		$dom->formatOutput = true;
+		$dom->loadXml($xml);
+		$formatted = preg_replace_callback('/^( +)</m', function($a) {
+			return str_repeat("\t", intval(strlen($a[1]) / 2)).'<';
+		}, $dom->saveXML(null, LIBXML_NOEMPTYTAG));
+		file_put_contents($databasesDir."/DataSources.xml", $formatted);
+		$parameters = (object)$parameters;
+		if (file_exists($simusDir . DIRECTORY_SEPARATOR . 'demo-' . $parameters->locale . '.xml')) {
+			rename($simusDir . DIRECTORY_SEPARATOR . 'demo-' . $parameters->locale . '.xml', $simusDir . DIRECTORY_SEPARATOR . 'demo.xml');
+		}
+		foreach (glob($simusDir . DIRECTORY_SEPARATOR . "demo-*.xml") as $filename) {
+			unlink($filename);
+		}
 	}
 
 	/**

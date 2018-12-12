@@ -192,7 +192,6 @@ class JSONToSQLConverter {
 	 *
 	 */
 	private function connectDatabase($dbschema, $dbtype) {
-		print_r($dbschema);
 		$this->database = new Database(null, $this->databasesDir, 1, $dbtype, str_replace('-', '_', $dbschema));
 		if ($this->parameters['database_host'] != "") {
 			$this->database->setHost($this->parameters['database_host']);
