@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
- 
+
 namespace EUREKA\G6KBundle\Manager;
 
 use EUREKA\G6KBundle\Entity\Database;
@@ -40,7 +40,7 @@ use EUREKA\G6KBundle\Manager\Json\JSONToSQLConverter;
 class DatasourcesHelper {
 
 	/**
-	 * @var \SimpleXMLElement $datasources The data sources of DataSources.xml 
+	 * @var \SimpleXMLElement $datasources The data sources of DataSources.xml
 	 *
 	 * @access  private
 	 *
@@ -51,7 +51,7 @@ class DatasourcesHelper {
 	 * Constructor of class DatasourcesHelper
 	 *
 	 * @access  public
-	 * @param   \SimpleXMLElement $datasources The data sources of DataSources.xml 
+	 * @param   \SimpleXMLElement $datasources The data sources of DataSources.xml
 	 * @return  void
 	 *
 	 */
@@ -72,6 +72,7 @@ class DatasourcesHelper {
 	 *
 	 */
 	public function makeDatasourceDom($schemafile, $datafile, $parameters, $databasesDir, &$id) {
+    echo $parameters;
 		$converter = new JSONToSQLConverter($parameters, $databasesDir);
 		$form = $converter->convert($schemafile, $datafile);
 		$datasource = $this->doCreateDatasource($form);
@@ -132,7 +133,7 @@ class DatasourcesHelper {
 	}
 
 	/**
-	 * Creates and returns a data source into a DOM element from a form. 
+	 * Creates and returns a data source into a DOM element from a form.
 	 *
 	 * @access  public
 	 * @param   array $form The form fields
