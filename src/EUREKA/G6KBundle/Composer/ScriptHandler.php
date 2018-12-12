@@ -201,7 +201,6 @@ class ScriptHandler
 		$helper = new DatasourcesHelper($datasources);
 		$dsid = 0;
 		$dom = $helper->makeDatasourceDom($schemafile, $datafile, $parameters, $databasesDir, $dsid);
-		$xml = $dom->saveXML(null, LIBXML_NOEMPTYTAG);
 
 	}
 
