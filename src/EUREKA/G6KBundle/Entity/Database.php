@@ -42,7 +42,7 @@ use \PDO;
 class Database {
 
 	/**
-	 * @var \EUREKA\G6KBundle\Entity\Simulator $simulator The Simulator object that uses this database 
+	 * @var \EUREKA\G6KBundle\Entity\Simulator $simulator The Simulator object that uses this database
 	 *
 	 * @access  private
 	 *
@@ -95,7 +95,7 @@ class Database {
 	 * @access  private
 	 *
 	 */
-	private $host; 
+	private $host;
 
 	/**
 	 * @var int      $port The database port
@@ -181,7 +181,7 @@ class Database {
 	 * Constructor of class Database
 	 *
 	 * @access  public
-	 * @param   \EUREKA\G6KBundle\Entity\Simulator $simulator The Simulator object that uses this database 
+	 * @param   \EUREKA\G6KBundle\Entity\Simulator $simulator The Simulator object that uses this database
 	 * @param   string      $databasesDir The "databases" directory, specially for SQLite.
 	 * @param   int         $id The ID of the database
 	 * @param   string      $type The type of the database
@@ -201,7 +201,7 @@ class Database {
 	 * Returns the Simulator object that uses this database
 	 *
 	 * @access  public
-	 * @return  \EUREKA\G6KBundle\Entity\Simulator The Simulator object 
+	 * @return  \EUREKA\G6KBundle\Entity\Simulator The Simulator object
 	 *
 	 */
 	public function getSimulator() {
@@ -461,11 +461,12 @@ class Database {
 					if (isset($this->name) && $withDbName) {
 						$dsn[] = 'dbname=' . str_replace('-', '_', $this->name);
 					}
-					$this->link = new \PDO('mysql:' . implode(';', $dsn), 
-						$this->user, 
+					$this->link = new \PDO('mysql:' . implode(';', $dsn),
+						$this->user,
 						$this->password,
 						array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
 					);
+					print_r($this->name);
 					$this->link->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
 					$this->link->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 					$this->link->setAttribute(\PDO::ATTR_CASE, \PDO::CASE_LOWER);
@@ -530,7 +531,7 @@ class Database {
 	/**
 	 * Prepares a statement for execution and returns a statement object.
 	 *
-	 * The SQL statement can contain zero or more named (:name) or question mark (?) parameter markers for which real values will be substituted when the statement is executed. 
+	 * The SQL statement can contain zero or more named (:name) or question mark (?) parameter markers for which real values will be substituted when the statement is executed.
 	 *
 	 * @access  public
 	 * @param   string  $sql The SQL Statement
@@ -556,7 +557,7 @@ class Database {
 	 * Binds a parameter to the specified variable name.
 	 *
 	 * @access  public
-	 * @param   \PDOStatement $stmt The statement object returned by the prepare method. 
+	 * @param   \PDOStatement $stmt The statement object returned by the prepare method.
 	 * @param   string|int Parameter identifier. For a prepared statement using named placeholders, this will be a parameter name of the form :name. For a prepared statement using question mark placeholders, this will be the 1-indexed position of the parameter.
 	 * @param   string &$variable  Name of the PHP variable to bind to the SQL statement parameter.
 	 * @param   string $type (default: 'text') The type of the parameter
@@ -596,10 +597,10 @@ class Database {
 	 * Binds a value to a corresponding named or question mark placeholder in the SQL statement that was used to prepare the statement.
 	 *
 	 * @access  public
-	 * @param   \PDOStatement $stmt The statement object returned by the prepare method. 
+	 * @param   \PDOStatement $stmt The statement object returned by the prepare method.
 	 * @param   string|int The parameter identifier. For a prepared statement using named placeholders, this will be a parameter name of the form :name. For a prepared statement using question mark placeholders, this will be the 1-indexed position of the parameter.
 	 * @param   string $value The value to bind to the parameter.
-	 * @param   string $type (default: 'text') The type of the parameter 
+	 * @param   string $type (default: 'text') The type of the parameter
 	 * @return  bool true on success or false on failure.
 	 *
 	 */
@@ -634,7 +635,7 @@ class Database {
 	 * Executes a prepared statement
 	 *
 	 * @access  public
-	 * @param   \PDOStatement $stmt The statement object returned by the prepare method. 
+	 * @param   \PDOStatement $stmt The statement object returned by the prepare method.
 	 * @return  bool true on success or false on failure.
 	 *
 	 */
@@ -660,7 +661,7 @@ class Database {
 	 * @access  public
 	 * @param   string  $sql The SQL Statement
 	 * @return  int|bool the number of rows that were modified or deleted by the SQL statement you issued, 0 if no rows were affected or false on failure
-	 * @throws \Exception 
+	 * @throws \Exception
 	 *
 	 */
 	public function exec($sql) {
@@ -762,7 +763,7 @@ class Database {
 				$sql = preg_replace_callback("/\bconcat\s*\(((?>[^()]+)|(?R))*\)/i", function ($r) {
 					$args = Splitter::splitList($r[1]);
 					return implode(' || ', array_map(function ($a) {
-						return $a == "?" ? $a : "'" . $a . "'"; 
+						return $a == "?" ? $a : "'" . $a . "'";
 					},  $args));
 				}, $sql);
 				break;
