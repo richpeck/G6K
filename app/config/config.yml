@@ -48,7 +48,7 @@ assetic:
 doctrine:
     dbal:
         driver: pdo_mysql
-        url:    "%env(CLEARDB_DATABASE_URL)%"
+        url:    "mysql://b8a0604c563926:886769d5@eu-cdbr-west-02.cleardb.net/heroku_3582f1e571f5f9c?reconnect=true"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
