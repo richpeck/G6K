@@ -234,7 +234,6 @@ class JSONToSQLConverter {
 		$name = $schema->title;
 		$dbtype = '';
 		$dbschema = '';
-		print_r($this->parameters['database_driver']);
 		switch($this->parameters['database_driver']) {
 			case 'pdo_sqlite':
 				$dbtype = 'sqlite';
@@ -244,6 +243,7 @@ class JSONToSQLConverter {
 			case 'pdo_mysql':
 				$dbtype = 'mysqli';
 				$dbschema = $name;
+				print_r($this->parameters['databae_host']);
 				$this->connectDatabase($dbschema, $dbtype);
 				$this->database->exec("create database if not exists " . str_replace('-', '_', $dbschema) . " character set utf8");
 				$this->database->setConnected(false);
