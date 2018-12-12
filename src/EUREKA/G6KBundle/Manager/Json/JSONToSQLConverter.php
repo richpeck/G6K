@@ -128,6 +128,7 @@ class JSONToSQLConverter {
 	 */
 	private function getType(\stdClass $coldef) {
 		$driver = $this->parameters['database_driver'];
+		print_r($this->parameters);
 		if ($coldef->type == 'string') {
 			if(isset($coldef->format)) {
 				return $this->datatypes[$driver][$coldef->format];
@@ -135,7 +136,7 @@ class JSONToSQLConverter {
 				return "VARCHAR(".$coldef->maxLength.")";
 			} else {
 				return $this->datatypes[$driver][$coldef->type];
-			} 
+			}
 		}
 		$type = $this->datatypes[$driver][$coldef->type];
 		if(isset($coldef->maxLength)) {
@@ -301,7 +302,7 @@ class JSONToSQLConverter {
 				$create_table .= ",\n";
 				$column = array(
 					'name' => $col,
-					'type' => isset($props->type) ? $props->type: $coldef->type, 
+					'type' => isset($props->type) ? $props->type: $coldef->type,
 					'label' => $coldef->title,
 					'description' => $coldef->description
 				);
@@ -316,9 +317,9 @@ class JSONToSQLConverter {
 					$column['choices'] = $choices;
 				} elseif (isset($props->datasource)) {
 					$source = array(
-						'datasource' => $props->datasource, 
-						'returnType' => $props->returnType, 
-						'valueColumn' => $props->valueColumn, 
+						'datasource' => $props->datasource,
+						'returnType' => $props->returnType,
+						'valueColumn' => $props->valueColumn,
 						'labelColumn' => $props->labelColumn
 					);
 					if (isset($props->request)) {
