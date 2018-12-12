@@ -1,10 +1,10 @@
 parameters:
-    database_driver: pdo_sqlite
-    database_host: 127.0.0.1
-    database_port: ~
-    database_name: g6k
-    database_user: ~
-    database_password: ~
+    database_driver:    pdo_pgsql
+    database_host:      '%env(DATABASE_HOST)%'
+    database_port:      5432
+    database_name:      '%env(DATABASE_NAME)%'
+    database_user:      '%env(DATABASE_USER)%'
+    database_password:  '%env(DATABASE_PASSWORD)%'
     database_path: %kernel.root_dir%/../src/EUREKA/G6KBundle/Resources/data/databases/g6k.db
 
     mailer_transport:  smtp
