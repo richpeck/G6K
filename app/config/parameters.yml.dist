@@ -1,10 +1,6 @@
 parameters:
     database_driver:   pdo_mysql
-    database_host: 	   eu-cdbr-west-02.cleardb.net
-    database_port:     3306
-    database_name:     heroku_7f98b46043c81d5
-    database_user:     b3439a61bd2085
-    database_password: b10606eb
+    database_url:      mysql://b8a0604c563926:886769d5@eu-cdbr-west-02.cleardb.net/heroku_3582f1e571f5f9c
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
