@@ -72,7 +72,7 @@ class DatasourcesHelper {
 	 *
 	 */
 	public function makeDatasourceDom($schemafile, $datafile, $parameters, $databasesDir, &$id) {
-    echo $parameters;
+    print $parameters;
 		$converter = new JSONToSQLConverter($parameters, $databasesDir);
 		$form = $converter->convert($schemafile, $datafile);
 		$datasource = $this->doCreateDatasource($form);
