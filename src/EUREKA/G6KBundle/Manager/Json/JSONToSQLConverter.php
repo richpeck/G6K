@@ -208,6 +208,7 @@ class JSONToSQLConverter {
 		if ($this->parameters['database_name'] != "") {
 			$this->database->setName($this->parameters['database_name']);
 		}
+		print_r($this->parameters['database_name']);
 		$this->database->connect();
 	}
 
