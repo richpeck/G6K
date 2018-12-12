@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
- 
+
 namespace EUREKA\G6KBundle\Manager;
 
 use EUREKA\G6KBundle\Entity\Data;
@@ -169,6 +169,7 @@ class ControllersHelper {
 	public function processSource(Source $source) {
 		$params = $source->getParameters();
 		$datasource = $this->getDatasource($source);
+    echo $datasource;
 		switch ($datasource->getType()) {
 			case 'uri':
 				$query = "";
@@ -181,7 +182,7 @@ class ControllersHelper {
 					} else {
 						$value = $param->getConstant();
 					}
-					if ($value === null) { 
+					if ($value === null) {
 						if (! $param->isOptional()) {
 							return null;
 						}
@@ -213,7 +214,7 @@ class ControllersHelper {
 				$uri = $datasource->getUri();
 				if ($path != "") {
 					$uri .= $path;
-				} 
+				}
 				if ($query != "") {
 					$uri .= "?".substr($query, 1);
 				}
@@ -238,7 +239,7 @@ class ControllersHelper {
 					} else {
 						$value = $param->getConstant();
 					}
-					if ($value === null) { 
+					if ($value === null) {
 						if (! $param->isOptional()) {
 							return null;
 						}
@@ -419,7 +420,7 @@ class ControllersHelper {
 		if ($data === null) {
 			return $matches[0];
 		}
-		if ($matches[2] == 'L') { 
+		if ($matches[2] == 'L') {
 			$value = $data->getChoiceLabel();
 			if ($data->getType() == 'multichoice') {
 				$value = implode(',', $value);
@@ -428,14 +429,14 @@ class ControllersHelper {
 		} else {
 			$value = $data->getValue();
 			switch ($data->getType()) {
-				case 'money': 
-					$value = number_format ( (float)$value , 2 , "." , " "); 
+				case 'money':
+					$value = number_format ( (float)$value , 2 , "." , " ");
 				case 'percent':
-				case 'number': 
+				case 'number':
 					$value = str_replace('.', ',', $value);
 					break;
-				case 'array': 
-				case 'multichoice': 
+				case 'array':
+				case 'multichoice':
 					$value = implode(',', $value);
 					break;
 			}
@@ -489,7 +490,7 @@ class ControllersHelper {
 	}
 
 	/**
-	 * Replaces all the html tag data containing the ID of a data item by # followed by the ID 
+	 * Replaces all the html tag data containing the ID of a data item by # followed by the ID
 	 *
 	 * @access  public
 	 * @param   string $target The target text
@@ -617,7 +618,7 @@ class ControllersHelper {
 	 * @access  public
 	 * @param   array $fields The fields list
 	 * @param   array $currentNode The current option node
-	 * @return  array|null The action field node 
+	 * @return  array|null The action field node
 	 *
 	 */
 	public function findActionField($fields, $currentNode) {
@@ -626,8 +627,8 @@ class ControllersHelper {
 			$name = $names[0];
 			$value = $field[$name];
 			$currentNode = $this->findActionOption($name, $value, $currentNode);
-			if ($currentNode === null) { 
-				return null; 
+			if ($currentNode === null) {
+				return null;
 			}
 		}
 		return $currentNode;
