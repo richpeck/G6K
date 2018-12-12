@@ -51,7 +51,7 @@ class ScriptHandler
 	 * - Running the 'fos_user.sql' script in the 'src/EUREKA/G6KBundle/Resources/data/databases' directory. This script contains an 'insert' of two users: admin and guest.
 	 *
 	 * @access  public
-	 * @static 
+	 * @static
 	 * @param   \Composer\Script\Event $event The script event class
 	 * @return  void
 	 *
@@ -171,7 +171,7 @@ class ScriptHandler
 	 * Installation of the demonstration simulator from the files "demo.schema.json" and "demo.json" located in the directory 'src/EUREKA/G6KBundle/Resources/data/databases'.
 	 *
 	 * @access  public
-	 * @static 
+	 * @static
 	 * @param   \Composer\Script\Event $event The script event class
 	 * @return  void
 	 *
@@ -181,6 +181,7 @@ class ScriptHandler
 			return;
 		}
 		$event->getIO()->write("Installing the demo simulator");
+		$event->getIO()->write("tester");
 		$extras = $event->getComposer()->getPackage()->getExtra();
 		$installationManager = $event->getComposer()->getInstallationManager();
 		$package = $event->getComposer()->getPackage();
@@ -193,7 +194,7 @@ class ScriptHandler
 		if (($parameters = self::getParameters($event, $configDir)) === false) {
 			return;
 		}
-		$name = 'demo';
+		$name = 'fos_demo';
 		$schemafile = $databasesDir . DIRECTORY_SEPARATOR . $name . '.schema.json';
 		$datafile = $databasesDir . DIRECTORY_SEPARATOR . $name . '.json';
 		$datasources = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><DataSources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/DataSources.xsd"><Databases></Databases></DataSources>', LIBXML_NOWARNING);
@@ -205,8 +206,8 @@ class ScriptHandler
 		$dom->preserveWhiteSpace  = false;
 		$dom->formatOutput = true;
 		$dom->loadXml($xml);
-		$formatted = preg_replace_callback('/^( +)</m', function($a) { 
-			return str_repeat("\t", intval(strlen($a[1]) / 2)).'<'; 
+		$formatted = preg_replace_callback('/^( +)</m', function($a) {
+			return str_repeat("\t", intval(strlen($a[1]) / 2)).'<';
 		}, $dom->saveXML(null, LIBXML_NOEMPTYTAG));
 		file_put_contents($databasesDir."/DataSources.xml", $formatted);
 		$parameters = (object)$parameters;
@@ -222,7 +223,7 @@ class ScriptHandler
 	 * This function parses the 'parameters.yml' file and returns an array of parameters
 	 *
 	 * @access  protected
-	 * @static 
+	 * @static
 	 * @param   \Composer\Script\Event $event The script event class
 	 * @param   mixed $configDir the absolute path of the 'app/config' directory
 	 * @return  array|false parameters array or false in case of error
@@ -232,7 +233,7 @@ class ScriptHandler
 		try {
 			$config = Yaml::parse(file_get_contents($configDir . DIRECTORY_SEPARATOR . 'parameters.yml'));
 			return $config['parameters'];
-			 
+
 		} catch (ParseException $e) {
 			$event->getIO()->write(sprintf("Unable to parse parameters.yml: %s", $e->getMessage()));
 			return false;

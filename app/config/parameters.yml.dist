@@ -5,6 +5,7 @@ parameters:
     database_host:     lt80glfe2gj8p5n2.chr7pe7iynqr.eu-west-1.rds.amazonaws.com
     database_port:     3306
     database_password: rl37icfy9s6ngih3
+    database_prefix:   fos
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
