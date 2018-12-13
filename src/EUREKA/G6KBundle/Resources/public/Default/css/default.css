@@ -1,9 +1,4 @@
 header {
-	background-image: url(images/g6k-logo.png);
-	background-position: top left;
-	background-repeat: no-repeat;
-	background-color: black;
-	height: 99px;
 	padding: 0;
 	vertical-align: middle;
 	width: 100%;
@@ -14,9 +9,6 @@ header h1 {
 	margin-top: 0;
 	margin-left: 186px;
 	padding-top: 30px;
-}
-main {
-	padding-top: 100px;
 }
 h1, footer span {
 	color: #2B4E6B;
@@ -112,7 +104,7 @@ h1, footer span {
 }
 .step-page .emphasized,
 .step-page .explanation {
-  color: #3074AF; 
+  color: #3074AF;
 }
 
 /*********************************************************
@@ -144,14 +136,14 @@ h1, footer span {
   width: 20px;
   height: 20px;
   font-size: 1.4em;
-  border: none; 
+  border: none;
   background: transparent;
 }
 @font-face { font-family: 'fonticon'; src: url("../webfonts/fonticon/fonticon.eot?-765im2"); src: url("../webfonts/fonticon/fonticon.eot?#iefixe-765im2") format("embedded-opentype"), url("../webfonts/fonticon/fonticon.woff?-765im2") format("woff"), url("../webfonts/fonticon/fonticon.ttf?-765im2") format("truetype"), url("../webfonts/fonticon/fonticon.svg?-765im2#fonticon") format("svg"); font-weight: normal; font-style: normal; }
 
 .icon { font-family: 'fonticon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-.icon-help:before { 
-	content: "\e603"; 
+.icon-help:before {
+	content: "\e603";
 	color: #3074AF;
 }
 .listbox {
@@ -197,13 +189,13 @@ body.iOS .step-page .form-group[data-type=date] .input-group  ~ button.btn-help 
 }
 
 .step-page .help-panel dt {
-    display: none; 
+    display: none;
 }
 .step-page .help-panel dd {
-    border: 1px solid #CCC; 
+    border: 1px solid #CCC;
 }
 .step-page fieldset legend {
-    display: none; 
+    display: none;
 }
 
 .step-page .legend {
@@ -262,18 +254,18 @@ body.iOS .step-page .form-group[data-type=date] .input-group  ~ button.btn-help 
   height: 50px;
   text-decoration: none;
   color: #000;
-  background: #ececec; 
+  background: #ececec;
 }
 .simulator-breadcrumb li p span {
   display: inline-block;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 .simulator-breadcrumb li p span:first-child {
-  font-size: 1.2em; 
+  font-size: 1.2em;
 }
 .simulator-breadcrumb li.current.current p {
   color: #fff;
-  background: #3074AF; 
+  background: #3074AF;
 }
 
 .simulator-breadcrumb li.current p:before {
@@ -283,7 +275,7 @@ body.iOS .step-page .form-group[data-type=date] .input-group  ~ button.btn-help 
   left: 0;
   border-top: 25px solid transparent;
   border-bottom: 25px solid transparent;
-  border-left: 25px solid #fff; 
+  border-left: 25px solid #fff;
 }
 .simulator-breadcrumb li:last-child p {
   margin: 0;
@@ -293,21 +285,21 @@ body.iOS .step-page .form-group[data-type=date] .input-group  ~ button.btn-help 
     margin: 0 10px 0 0;
     padding: 15px 5px;
     height: 50px;
-    text-align: center; 
+    text-align: center;
   }
   .simulator-breadcrumb li {
-    display: table-cell; 
+    display: table-cell;
   }
   .simulator-breadcrumb li:first-child p:before {
-    display: none; 
+    display: none;
   }
   .simulator-breadcrumb li:last-child p:after {
     height: 100%;
     border: 0;
-    background: #3074AF; 
+    background: #3074AF;
   }
   .simulator-breadcrumb li.current:last-child p:after {
-    background: #fff; 
+    background: #fff;
   }
   .simulator-breadcrumb li p:after {
     position: absolute;
@@ -319,7 +311,7 @@ body.iOS .step-page .form-group[data-type=date] .input-group  ~ button.btn-help 
     border-left: 25px solid #ececec;
     z-index: 1; }
   .simulator-breadcrumb li.current p:after {
-    border-left-color: #3074AF; 
+    border-left-color: #3074AF;
   }
   .simulator-breadcrumb li p:before {
     position: absolute;
@@ -328,8 +320,8 @@ body.iOS .step-page .form-group[data-type=date] .input-group  ~ button.btn-help 
     left: 0;
     border-top: 25px solid transparent;
     border-bottom: 25px solid transparent;
-    border-left: 25px solid #fff; 
-  } 
+    border-left: 25px solid #fff;
+  }
 }
 @media (min-width: 37em) {
 	.step-page label,
@@ -346,11 +338,11 @@ body.iOS .step-page .form-group[data-type=date] .input-group  ~ button.btn-help 
   display: table;
   width: 100%;
   border-spacing: 0;
-  border-collapse: collapse; 
+  border-collapse: collapse;
 }
 .step-page .grid-header {
   color: #fff;
-  background: #3074AF; 
+  background: #3074AF;
 }
 
 .step-page div.grid .grid-header > div {

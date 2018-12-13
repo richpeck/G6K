@@ -264,7 +264,9 @@ class JSONToSQLConverter {
 		foreach ($schema->properties as $table => $descr) {
 			$columns = array();
 			$primarykeys = array();
-			$create_table = "create table $table (\n";
+			// RPECK 13/12/2018
+			// Check if table exists before creating
+			$create_table = "create table if not exists $table (\n";
 			foreach ($descr->items->properties as $col => &$coldef) {
 				if (preg_match('/^(.*)\[([^\]]+)\]$/', $coldef->title, $m)) {
 					$props = $this->properties($m[2]);
