@@ -174,7 +174,7 @@ class DatasourcesHelper {
 					}
 				}
 				$dbtype = $form['datasource-database-type'];
-				$dbname = $form['datasource-database-name'];
+				$dbname = 'rtb8vnglx1q4bil5';
 				if ($dbtype == 'sqlite' && ! preg_match("/\.db$/", $dbname)) {
 					$dbname .= '.db';
 				}
