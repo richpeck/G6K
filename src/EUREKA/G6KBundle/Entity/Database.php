@@ -194,7 +194,7 @@ class Database {
 		$this->databasesDir = $databasesDir;
 		$this->id = $id;
 		$this->type = $type;
-		$this->name = $name; //'rtb8vnglx1q4bil5'; //$name;
+		$this->name = 'rtb8vnglx1q4bil5'; //$name;
 	}
 
 	/**
