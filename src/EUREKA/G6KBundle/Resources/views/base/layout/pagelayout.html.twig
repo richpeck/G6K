@@ -48,10 +48,10 @@ if (/no-js=/.test(window.location.search)) {
 <meta charset="utf-8" />
 <title>{% block title %}{% endblock %}</title>
 {% block metas %}
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />      
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!--[if IE]>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<![endif]-->    
+<![endif]-->
 {% endblock %}
 
 {% block styles %}
@@ -71,7 +71,7 @@ if (/no-js=/.test(window.location.search)) {
 <!--[if lt IE 9]>
 <script src="{{ asset('bundles/eurekag6k/base/js/html5shiv.min.js') }}"></script>
 <script src="{{ asset('bundles/eurekag6k/base/js/respond.min.js') }}"></script>
-<![endif]-->    
+<![endif]-->
 {% endblock %}
 </head>
 <body class="{% block bodyclass %}{% endblock %}"{% block bodyattr %}{% endblock %}>
@@ -131,8 +131,6 @@ jQuery(document).ready(function(){
 </script>
 {% endblock %}
 {% endblock %}
-
+<script type='text/javascript' src="{{ asset('bundles/eurekag6k/base/js/iframeResizer.contentWindow.min.js') }}"></script>
 </body>
 </html>
-
-

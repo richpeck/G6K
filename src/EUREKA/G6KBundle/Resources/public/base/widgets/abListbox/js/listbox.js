@@ -1,5 +1,5 @@
 /*!
- * Accessible Listbox v1.0.0 
+ * Accessible Listbox v1.0.0
  * Copyright 2015 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://oaa-accessibility.org/example/9/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -51,13 +51,13 @@
 		this.home       = 36;
 
 		this.up         = 38;
-		this.down       = 40; 
+		this.down       = 40;
 
 		this.del        = 46;
 
 	} // end keyCodes
 
-	/** 
+	/**
 	 *	Function Listbox() is a class for an ARIA-enabled listbox widget
 	 *
 	 *	@param (target string) target is the HTML select.
@@ -80,18 +80,18 @@
 			if ($.inArray(attr.name, ["id", "name", "class", "style", "value", "tabindex", "required", "aria-controls"]) < 0) {
 				self.$listbox.attr(attr.name, attr.value);
 			}
-        }); 
+        });
 		this.$listbox.css('position', 'relative');
 		this.hideObject(this.$listbox.find('input'));
 		this.$label = $target.parents().find("label[for=" + this.id + "]");
 		this.$label.attr('for', 'combobox-' + this.id)
 		if (! this.$listbox.attr('aria-label') && this.$label.length && this.$label.attr('id')) {
-			this.$listbox.attr('aria-labelledby', this.$label.attr('id')); 
+			this.$listbox.attr('aria-labelledby', this.$label.attr('id'));
 		}
 		if ($target.attr('required')) {
-			this.$listbox.attr('aria-required', true); 
+			this.$listbox.attr('aria-required', true);
 		}
-		this.$listbox.attr('aria-controls', this.id); 
+		this.$listbox.attr('aria-controls', this.id);
 		this.$listbox.attr('aria-label', $target.attr('aria-label'));
 		this.$listbox.addClass(this.options.theme);
 		this.keys = new keyCodes();
@@ -163,11 +163,11 @@
 		size: 10,
 		theme: 'default',
 		onSelected: function (value, text) {
-			
+
 		}
 	}
 
-	/** 
+	/**
 	 *	Function init() is a member function to initialize the listbox elements. Hides the list
 	 *	and sets ARIA attributes
 	 *
@@ -190,9 +190,9 @@
 
 	} // end init()
 
-	/** 
-	 *	Function populateList() is a member function to populate the listbox items form the select box. 
-	 *	@return true if the item is selected, false otherwise 
+	/**
+	 *	Function populateList() is a member function to populate the listbox items form the select box.
+	 *	@return true if the item is selected, false otherwise
 	 *
 	 */
 	Listbox.prototype.populateList = function($option, nested) {
@@ -212,8 +212,8 @@
 		return selected;
 	} // end populateList()
 
-	/** 
-	 *	bindEditboxHandlers() is a member function to bind event handlers for the edit box 
+	/**
+	 *	bindEditboxHandlers() is a member function to bind event handlers for the edit box
 	 *
 	 *	@return N/A
 	 *
@@ -239,8 +239,8 @@
 		});
 	} // end bindEditboxHandlers()
 
-	/** 
-	 *	bindButtonHandlers() is a member function to bind event handlers for the edit box 
+	/**
+	 *	bindButtonHandlers() is a member function to bind event handlers for the edit box
 	 *
 	 *	@return N/A
 	 *
@@ -264,7 +264,7 @@
 		});
 	} // end bindButtonHandlers()
 
-	/** 
+	/**
 	 *	bindListboxHandlers() is a member function to bind event handlers for the listbox itself
 	 *
 	 *	@return N/A
@@ -280,7 +280,7 @@
 		});
 	} // end bindListboxHandlers()
 
-	/** 
+	/**
 	 *	bindOptionsHandlers() is a member function to bind event handlers for the list option
 	 *
 	 *	@return N/A
@@ -307,7 +307,7 @@
 
 
 
-	/** 
+	/**
 	 *	bindHandlers() is a member function to bind event handlers for the button
 	 *
 	 *	@return N/A
@@ -327,7 +327,7 @@
 		this.bindOptionsHandlers();
 	} // end bindHandlers()
 
-	/** 
+	/**
 	 *	isOpen() is a member function to get the current state of the list box
 	 *
 	 *	@return (boolean) returns true if list box is open; false if it is not
@@ -342,7 +342,7 @@
 		}
 	} // end isOpen
 
-	/** 
+	/**
 	 *	closeList() is a member function to close the list box if it is open
 	 *
 	 *	@param (restore booleam) restore is true if function should restore higlight to stored list selection
@@ -370,7 +370,7 @@
 
 	} // end closeList()
 
-	/** 
+	/**
 	 *	openList() is a member function to open the list box if it is closed
 	 *
 	 *	@param (restore booleam) restore is true if function should restore higlight to stored list selection
@@ -408,11 +408,16 @@
 		var groupHeight = this.$group.outerHeight(true);
 		var roomBefore = Math.floor(groupTop - $(window).scrollTop());
 		var roomAfter = Math.floor($(window).height() - (groupTop + groupHeight - $(window).scrollTop()));
-		if (roomAfter < listHeight && roomAfter < roomBefore) {
+
+
+    // RPeck 14/12/2018
+    // We always need it to show on the bottom
+		/* if (roomAfter < listHeight && roomAfter < roomBefore) {
 			this.$list.css('top', (- listHeight) + 'px'); // show list above group
 		} else {
 			this.$list.css('top', (groupHeight) + 'px');  // show list below group
-		}
+		}*/
+    this.$list.css('top', (groupHeight) + 'px');  // show list below group
 		this.$list.fadeIn().attr('aria-expanded', 'true');
 
 		// scroll to the currently selected option
@@ -423,7 +428,7 @@
 
 	} // end openList();
 
-	/** 
+	/**
 	 *	toggleList() is a member function to toggle the display of the listbox options.
 	 *
 	 *	@param (restore booleam) restore is true if toggle should restore higlight to stored list selection
@@ -440,7 +445,7 @@
 		}
 	} // end toggleList()
 
-	/** 
+	/**
 	 *	selectOption() is a member function to select a new listbox option.
 	 *	The jQuery object for the new option is stored and the selected class is added
 	 *
@@ -471,10 +476,10 @@
 		this.options.onSelected($id.attr('data-value'), $id.text());
 	} // end selectOption
 
-	/** 
+	/**
 	 *	searchOption() is a member function to search the option whose text starts with the given keys.
 	 *
-	 *	@param (fromOption int) fromOption is the starting option 
+	 *	@param (fromOption int) fromOption is the starting option
 	 *
 	 *	@return The jQuery object for the matched option or null
 	 *
@@ -504,7 +509,7 @@
 		return $found;
 	} // end searchOption
 
-	/** 
+	/**
 	 *	latinise() is a member function to replace all accented characters in a string.
 	 *
 	 *	@param (txt string) accented string
@@ -517,7 +522,7 @@
 		return txt.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return latin_map[a]||a});
 	}
 
-	/** 
+	/**
 	 *	calcOffset() is a member function to calculate the pixel offset of a list option from the top
 	 *	of the list
 	 *
@@ -535,7 +540,7 @@
 
 	} // end calcOffset
 
-	/** 
+	/**
 	 *	handleButtonClick() is a member function to consume button click events. This handler prevents
 	 *	clicks on the button from reloading the page. This could also be done by adding 'onclick="false";' to the
 	 *	button HTML markup.
@@ -552,7 +557,7 @@
 		return false;
 	} // end handleButtonClick();
 
-	/** 
+	/**
 	 *	handleButtonMouseOver() is a member function to process button mouseover events
 	 *
 	 *	@param ($id object) $id is the jQuery object for the element firing the event
@@ -567,7 +572,7 @@
 		return false;
 	} // end handleButtonMouseOver();
 
-	/** 
+	/**
 	 *	handleButtonMouseOut() is a member function to process button mouseout events
 	 *
 	 *	@param (e object) e is the event object associated with the event
@@ -582,7 +587,7 @@
 		return false;
 	} // end handleButtonMouseOut();
 
-	/** 
+	/**
 	 *	handleButtonMouseDown() is a member function to process button mousedown events
 	 *
 	 *	@param (e object) e is the event object associated with the event
@@ -600,7 +605,7 @@
 
 	} // end handleButtonMouseDown();
 
-	/** 
+	/**
 	 *	handleButtonMouseUp() is a member function to process button mouseup events
 	 *
 	 *	@param (e object) e is the event object associated with the event
@@ -615,7 +620,7 @@
 		return false;
 	} // end handleButtonMouseUp();
 
-	/** 
+	/**
 	 *	handleOptionKeyDown() is a member function to process keydown events for
 	 *	the listbox
 	 *
@@ -780,7 +785,7 @@
 
 	} // end handleOptionKeyDown()
 
-	/** 
+	/**
 	 *	handleOptionKeyPress() is a member function to process keypress events for
 	 *	the listbox. Needed for browsers that use keypress to manipulate the window
 	 *
@@ -812,7 +817,7 @@
 		return true;
 	} // end handleOptionKeyPress()
 
-	/** 
+	/**
 	 *	handleEditKeyDown() is a member function to process keydown events for
 	 *	the edit box.
 	 *
@@ -883,7 +888,7 @@
 
 	} // end handleEditKeyDown()
 
-	/** 
+	/**
 	 *	handleEditKeyPress() is a member function to process keypress events for
 	 *	the edit box. Needed for browsers that use keypress events to manipulate the window.
 	 *
@@ -912,7 +917,7 @@
 
 	} // end handleOptionKeyPress()
 
-	/** 
+	/**
 	 *	handleOptionClick() is a member function to process click events for
 	 *	the listbox.
 	 *
@@ -932,7 +937,7 @@
 		return false;
 	} // end handleOptionClick()
 
-	/** 
+	/**
 	 *	handleListFocus() is a member function to process focus events for
 	 *	the list box
 	 *
@@ -952,7 +957,7 @@
 
 	} // end handleListFocus()
 
-	/** 
+	/**
 	 *	handleListBlur() is a member function to process blur events for
 	 *	the listbox
 	 *
@@ -976,8 +981,8 @@
 		return true;
 	} // end handleListBlur()
 
-	/** 
-	 *	hideObject() is a member function to hide an element of the listbox. 
+	/**
+	 *	hideObject() is a member function to hide an element of the listbox.
 	 *
 	 *	@param ($element jQuery object) the element to hide
 	 *	@return N/A
@@ -987,8 +992,8 @@
 		$element.hide();
 	} // end hideObject()
 
-	/** 
-	 *	showObject() is a member function to show an element of the listbox. 
+	/**
+	 *	showObject() is a member function to show an element of the listbox.
 	 *
 	 *	@param ($element jQuery object) the element to show
 	 *	@return N/A
@@ -998,8 +1003,8 @@
 		$element.show();
 	} // end showObject()
 
-	/** 
-	 *	theme() is a public member function which allow change the listbox theme. 
+	/**
+	 *	theme() is a public member function which allow change the listbox theme.
 	 *
 	 *	@param (value string) the new theme
 	 *	@return the listbox theme
@@ -1013,8 +1018,8 @@
 		return this.options.theme;
 	} // end theme()
 
-	/** 
-	 *	size() is a public member function which allow change the listbox size. 
+	/**
+	 *	size() is a public member function which allow change the listbox size.
 	 *
 	 *	@param (value string) the new size
 	 *	@return the listbox size
@@ -1027,8 +1032,8 @@
 	} // end size()
 
 
-	/** 
-	 *	reset() is a public member function which allow setting the list box to its initial state. 
+	/**
+	 *	reset() is a public member function which allow setting the list box to its initial state.
 	 *
 	 *	@return the initial value
 	 *
@@ -1055,8 +1060,8 @@
 
 
 
-	/** 
-	 *	update() is a public member function which allow uppate the list box according the input value. 
+	/**
+	 *	update() is a public member function which allow uppate the list box according the input value.
 	 *
 	 *	@return the input value
 	 *
@@ -1084,8 +1089,8 @@
 	} // end update
 
 
-	/** 
-	 *	empty() is a public member function which allow removing all items of the list box. 
+	/**
+	 *	empty() is a public member function which allow removing all items of the list box.
 	 *
 	 *	@return null
 	 *
@@ -1096,8 +1101,8 @@
 		return null;
 	} // end empty
 
-	/** 
-	 *	addItems() is a public member function which allow adding items to the list box. 
+	/**
+	 *	addItems() is a public member function which allow adding items to the list box.
 	 *
 	 *	@param (items array of objects) the array of items to add. for one item : value = item.value, text = item.text, selected = true|false
 	 *	@return null
@@ -1120,8 +1125,8 @@
 		return null;
 	} // end addItems
 
-	/** 
-	 *	setItems() is a public member function which allow setting all items to the list box. 
+	/**
+	 *	setItems() is a public member function which allow setting all items to the list box.
 	 *
 	 *	@param (items array of objects) the array of items to set. for one item : value = item.value, text = item.text, selected = true|false
 	 *	@return null
@@ -1133,8 +1138,8 @@
 	} // end setItems
 
 
-	/** 
-	 *	showItem() is a public member function which allow showing an item of the listbox. 
+	/**
+	 *	showItem() is a public member function which allow showing an item of the listbox.
 	 *
 	 *	@param (value string) the value attr of the item
 	 *	@return null
@@ -1173,8 +1178,8 @@
 		}
 	} // end showItem
 
-	/** 
-	 *	hideItem() is a public member function which allow hiding an item of the listbox. 
+	/**
+	 *	hideItem() is a public member function which allow hiding an item of the listbox.
 	 *
 	 *	@param (value string) the value attr of the item
 	 *	@return null
@@ -1243,5 +1248,5 @@
 		$.fn.listbox = old
 		return this
 	}
-  
+
 }));
