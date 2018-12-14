@@ -1,11 +1,10 @@
 parameters:
     database_driver:   pdo_mysql
-    database_name:     rtb8vnglx1q4bil5
-    database_user:     n5xhkm3ni3zpursn
-    database_host:     lt80glfe2gj8p5n2.chr7pe7iynqr.eu-west-1.rds.amazonaws.com
+    database_name:     elitpixy_g6k
+    database_user:     elitpixy_g6k
+    database_host:     localhost
     database_port:     3306
-    database_password: rl37icfy9s6ngih3
-    database_prefix:   fos
+    database_password: password1
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
