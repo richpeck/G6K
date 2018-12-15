@@ -32,7 +32,7 @@ THE SOFTWARE.
 	Date.easter = function(year) {
 		try {
 			year = Number( year );
-			if ( year != year ) { 
+			if ( year != year ) {
 				throw new TypeError( "Value must be a number." );
 			}
 			else if ( year > 275760 || year < -271820 ) {
@@ -40,7 +40,7 @@ THE SOFTWARE.
 			}
 		}
 		catch ( e ) { console && console.log( e ); }
-	 
+
 		year = Math.floor( year );
 		var c = Math.floor( year / 100 );
 		var n = year - 19 * Math.floor( year / 19 );
@@ -61,7 +61,7 @@ THE SOFTWARE.
 
 	Date.nthDayOfMonth = function(nth, day, month, year) {
 		var date = Date.createFromFormat("Y-n-j", year + "-" + month + "-01" );
-		while(date.getDay()!=day){      
+		while(date.getDay()!=day){
 			date.setDate(date.getDate()+1) ;
 		}
 		date.setDate(date.getDate() + (nth - 1) * 7);
@@ -87,8 +87,8 @@ THE SOFTWARE.
 
 	Date.prototype.msPERDAY = Date.msPERDAY;
 
-	Date.prototype.copy = function () { 
-		return new Date( +this ); 
+	Date.prototype.copy = function () {
+		return new Date( +this );
 	};
 
 	Date.prototype.workingDaysBefore = function(endDate) {
@@ -101,7 +101,7 @@ THE SOFTWARE.
 		startDate.setHours(0,0,0,1);  // Start just after midnight
 		endDate.setHours(23,59,59,999);  // End just before midnight
 
-		var diff = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()) - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());  // Milliseconds between datetime objects    
+		var diff = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()) - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());  // Milliseconds between datetime objects
 		var days = Math.ceil(diff / this.msPERDAY) + 1;
 
 		// Subtract two weekend days for every week in between
@@ -112,9 +112,9 @@ THE SOFTWARE.
 		var startDay = startDate.getDay();
 		var endDay = endDate.getDay();
 
-		// Remove weekend not previously removed.   
-		if (startDay - endDay > 1)         
-			days = days - 2;      
+		// Remove weekend not previously removed.
+		if (startDay - endDay > 1)
+			days = days - 2;
 
 		// Remove start day if span starts on Sunday but ends before Saturday
 		if (startDay == 0 && endDay != 6)
@@ -122,7 +122,7 @@ THE SOFTWARE.
 
 		// Remove end day if span ends on Saturday but starts after Sunday
 		if (endDay == 6 && startDay != 0)
-			days = days - 1;  
+			days = days - 1;
 
 		var locale = Date.locale ? Date.locale : "en-US";
 		var startYear = startDate.getFullYear();
@@ -142,7 +142,7 @@ THE SOFTWARE.
 	Date.prototype.isWorkingDay = function() {
 		var day = this.getDay();
 		if (day == 0 || day == 6) {
-			return false; 
+			return false;
 		}
 		var locale = Date.locale ? Date.locale : "en-US";
 		var holidays = Date.holidaysOfYear(this.getFullYear(), locale);
@@ -160,7 +160,7 @@ THE SOFTWARE.
 	Date.prototype.nextWorkingDay = function() {
 		var d = new Date(+this);
 		while (! d.isWorkingDay()) {
-			d.addDays(1); 
+			d.addDays(1);
 		}
 		return d;
 	};
@@ -182,7 +182,7 @@ THE SOFTWARE.
 		var tmp = d.copy();
 		tmp.setHours(this.getHours(), this.getMinutes(), this.getSeconds(), this.getMilliseconds());
 		var diff = tmp.getTime() - this.getTime();
-		return Math.ceil(diff/this.msPERDAY);        
+		return Math.ceil(diff/this.msPERDAY);
 	};
 
 	Date.prototype.getDayOfYear = function() {
@@ -238,21 +238,21 @@ THE SOFTWARE.
 		var startDay = this.getDay();  //current weekday 0 thru 6
 		var wkEnds = 0;                //# of weekends needed
 		var partialWeek = d % 5;       //# of weekdays for partial week
-		if (d < 0) {                 //subtracting weekdays 
+		if (d < 0) {                 //subtracting weekdays
 			wkEnds = Math.ceil(d/5); //negative number weekends
 			switch (startDay) {
 				case 6:                  //start Sat. 1 less weekend
-					if (partialWeek == 0 && wkEnds < 0) 
+					if (partialWeek == 0 && wkEnds < 0)
 					wkEnds++;
 					break;
 				case 0:                   //starting day is Sunday
-					if (partialWeek == 0) 
+					if (partialWeek == 0)
 						d++;              //decrease days to add
-					else 
+					else
 						d--;              //increase days to add
 					break;
 				default:
-					if (partialWeek <= -startDay) 
+					if (partialWeek <= -startDay)
 						wkEnds--;
 			}
 		} else if (d > 0) {            //adding weekdays
@@ -264,17 +264,17 @@ THE SOFTWARE.
 					 * no partial week one less day needed
 					 * if partial week one more day needed
 					 */
-					if (partialWeek == 0) 
+					if (partialWeek == 0)
 						d--;
-					else 
+					else
 						d++;
 					break;
 				case 0:        //Sunday
-					if (partialWeek == 0 && wkEnds > 0) 
+					if (partialWeek == 0 && wkEnds > 0)
 					wkEnds--;
 					break;
 				default:
-					if (5 - day < partialWeek) 
+					if (5 - day < partialWeek)
 						wkEnds++;
 			}
 		}
@@ -296,9 +296,9 @@ THE SOFTWARE.
 				endDay = d.getDay();
 			}
 			wkEnds = Math.floor(days/7);
-			if (startDay != 6 && startDay > endDay) 
+			if (startDay != 6 && startDay > endDay)
 				wkEnds++;
-			if (startDay != endDay && (startDay == 6 || endDay == 6) ) 
+			if (startDay != endDay && (startDay == 6 || endDay == 6) )
 				days--;
 			days -= (wkEnds * 2);
 		}
@@ -306,7 +306,7 @@ THE SOFTWARE.
 	};
 
 	Date.prototype.getMonthsBetween = function(d) {
-		var sDate, eDate;   
+		var sDate, eDate;
 		var d1 = this.getFullYear() * 12 + this.getMonth();
 		var d2 = d.getFullYear() * 12 + d.getMonth();
 		var sign;
@@ -381,7 +381,7 @@ THE SOFTWARE.
 			newDate = new Date(d);
 		} else {
 			newDate = null;
-		}  
+		}
 		if (newDate == "Invalid Date")
 			return null;
 		else
@@ -1799,7 +1799,7 @@ THE SOFTWARE.
 			seconds:  0,
 			milliseconds: 0
 		};
-		try { 
+		try {
 			for(var i = 0; i < format.length; i++) {
 				var f = format.charAt(i);
 				switch (f) {
@@ -1936,30 +1936,30 @@ THE SOFTWARE.
 
 	Token.TYPE = {
 		T_UNDEFINED			: 0,
-		T_NUMBER	  		: 1,  
-		T_DATE				: 2, 
-		T_BOOLEAN			: 3, 
-		T_TEXT				: 4, 
-		T_ANY				: 5, 
-		T_IDENT				: 6,  
-		T_FUNCTION			: 7,  
-		T_ARRAY				: 8,  
-		T_POPEN				: 9,  
-		T_PCLOSE			: 10, 
-		T_SBOPEN			: 11,  
-		T_SBCLOSE			: 12, 
-		T_COMMA				: 13, 
-		T_NOOP				: 14, 
-		T_PLUS				: 15, 
-		T_MINUS				: 16, 
-		T_TIMES				: 17, 
-		T_DIV				: 18, 
-		T_MOD				: 19, 
-		T_POW				: 20, 
-		T_UNARY_PLUS		: 21, 
-		T_UNARY_MINUS		: 22, 
-		T_NOT				: 23, 
-		T_FIELD				: 24, 
+		T_NUMBER	  		: 1,
+		T_DATE				: 2,
+		T_BOOLEAN			: 3,
+		T_TEXT				: 4,
+		T_ANY				: 5,
+		T_IDENT				: 6,
+		T_FUNCTION			: 7,
+		T_ARRAY				: 8,
+		T_POPEN				: 9,
+		T_PCLOSE			: 10,
+		T_SBOPEN			: 11,
+		T_SBCLOSE			: 12,
+		T_COMMA				: 13,
+		T_NOOP				: 14,
+		T_PLUS				: 15,
+		T_MINUS				: 16,
+		T_TIMES				: 17,
+		T_DIV				: 18,
+		T_MOD				: 19,
+		T_POW				: 20,
+		T_UNARY_PLUS		: 21,
+		T_UNARY_MINUS		: 22,
+		T_NOT				: 23,
+		T_FIELD				: 24,
 		T_EQUAL				: 25,
 		T_NOT_EQUAL			: 26,
 		T_LESS_THAN			: 27,
@@ -2022,8 +2022,8 @@ THE SOFTWARE.
 		},
 
 		isOperator: function (){
-			return this.isUnaryOperator() 
-				|| this.isBinaryOperator() 
+			return this.isUnaryOperator()
+				|| this.isBinaryOperator()
 				|| this.isTernaryOperator();
 		},
 
@@ -2427,7 +2427,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type == Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type == Token.TYPE.T_NUMBER) {
 						if (arg2.type == Token.TYPE.T_NUMBER) {
 							result.value = arg1.value + arg2.value;
 						} else if (arg2.type == Token.TYPE.T_DATE) {
@@ -2472,7 +2472,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type == Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type == Token.TYPE.T_NUMBER) {
 						if (arg2.type == Token.TYPE.T_NUMBER) {
 							result.value = arg1.value - arg2.value;
 						} else {
@@ -2499,7 +2499,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument '" + arg2 + "' : operands must be numbers for " + op);
 					} else {
 						result.value = arg1.value * arg2.value;
@@ -2509,7 +2509,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument : operands must be numbers for " + op);
 					} else {
 						result.value = arg1.value / arg2.value;
@@ -2519,7 +2519,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument : operands must be numbers for " + op);
 					} else {
 						result.value = arg1.value % arg2.value;
@@ -2529,7 +2529,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument : operands must be numbers for " + op);
 					} else {
 						result.value = Math.pow(arg1.value, arg2.value);
@@ -2539,7 +2539,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument : operands must be numbers for " + op);
 					} else {
 						result.value = arg1.value & arg2.value;
@@ -2549,7 +2549,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument : operands must be numbers for " + op);
 					} else {
 						result.value = arg1.value ^ arg2.value;
@@ -2559,7 +2559,7 @@ THE SOFTWARE.
 					if (arg1.isVariable() || arg2.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2];
-					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER || arg2.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument : operands must be numbers for " + op);
 					} else {
 						result.value = arg1.value | arg2.value;
@@ -2627,7 +2627,7 @@ THE SOFTWARE.
 					if (arg1.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1];
-					} else if (arg1.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument '" + arg1 + "' : operand must be a number for " + op);
 					} else {
 						result.value = arg1.value;
@@ -2637,7 +2637,7 @@ THE SOFTWARE.
 					if (arg1.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1];
-					} else if (arg1.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument '" + arg1 + "' : operand must be a number for " + op);
 					} else {
 						result.value = -arg1.value;
@@ -2647,7 +2647,7 @@ THE SOFTWARE.
 					if (arg1.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1];
-					} else if (arg1.type != Token.TYPE.T_NUMBER && arg1.type != Token.TYPE.T_BOOLEAN) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER && arg1.type != Token.TYPE.T_BOOLEAN) {
 						throw new Error("Illegal argument '" + arg1 + "' : operand must be a number or a boolean for " + op);
 					} else {
 						result.type = arg1.type;
@@ -2658,7 +2658,7 @@ THE SOFTWARE.
 					if (arg1.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1];
-					} else if (arg1.type != Token.TYPE.T_NUMBER) { 
+					} else if (arg1.type != Token.TYPE.T_NUMBER) {
 						throw new Error("Illegal argument '" + arg1 + "' : operand must be a number for " + op);
 					} else {
 						result.value = arg1.value * Math.PI / 180;
@@ -2671,7 +2671,7 @@ THE SOFTWARE.
 					if (arg1.isVariable()) {
 						result.type = Token.TYPE.T_UNDEFINED;
 						result.value = [arg1, arg2, arg3];
-					} else if (arg1.type != Token.TYPE.T_BOOLEAN) { 
+					} else if (arg1.type != Token.TYPE.T_BOOLEAN) {
 						throw new Error("Illegal argument '" + arg1 + "' : operand 1 must be a condition for " + op);
 					} else {
 						result = arg1.value ? arg2 : arg3;
@@ -2691,9 +2691,9 @@ THE SOFTWARE.
 			var result;
 			if (arg1.isVariable() || arg2.isVariable()) {
 				result = new Token(Token.TYPE.T_UNDEFINED, [arg1, arg2]);
-			} else if (op.type != Token.TYPE.T_CONTAINS && arg1.type != arg2.type) { 
+			} else if (op.type != Token.TYPE.T_CONTAINS && arg1.type != arg2.type) {
 				throw new Error("operand types for '" + op + "' are not identical");
-			} else if (op.type == Token.TYPE.T_CONTAINS && arg1.type != Token.TYPE.T_ARRAY) { 
+			} else if (op.type == Token.TYPE.T_CONTAINS && arg1.type != Token.TYPE.T_ARRAY) {
 				throw new Error("first operand type for '" + op + "' is not an array");
 			} else {
 				result = new Token(Token.TYPE.T_BOOLEAN, false);
@@ -2759,7 +2759,7 @@ THE SOFTWARE.
 					$.each(a, function(i, v) {
 						c += v !== undefined ? v : '';
 					});
-					return c; 
+					return c;
 				}],
 				"cos": [1, [Token.TYPE.T_NUMBER], Token.TYPE.T_NUMBER, function(a) { return Math.cos(a); }],
 				"cosh": [1, [Token.TYPE.T_NUMBER], Token.TYPE.T_NUMBER, function(a) { return Math.cosh(a); }],
@@ -2770,7 +2770,7 @@ THE SOFTWARE.
 							c += 1;
 						}
 					});
-					return c; 
+					return c;
 				}],
 				"day": [1, [Token.TYPE.T_DATE], Token.TYPE.T_NUMBER, function(a) { return a.getDate(); }],
 				"exp": [1, [Token.TYPE.T_NUMBER], Token.TYPE.T_NUMBER, function(a) { return Math.exp(a); }],
@@ -2808,7 +2808,7 @@ THE SOFTWARE.
 							s += v;
 						}
 					});
-					return s; 
+					return s;
 				}],
 				"tan": [1, [Token.TYPE.T_NUMBER], Token.TYPE.T_NUMBER, function(a) { return Math.tan(a); }],
 				"tanh": [1, [Token.TYPE.T_NUMBER], Token.TYPE.T_NUMBER, function(a) { return Math.tanh(a); }],
@@ -2819,12 +2819,12 @@ THE SOFTWARE.
 				"workdaysofmonth": [2, [Token.TYPE.T_NUMBER, Token.TYPE.T_NUMBER], Token.TYPE.T_NUMBER, function(a, b) {
 					var d1 = Date.createFromFormat('Y-n-j', a + '-' + b + '-1' );
 					var d2 = new Date(d1.getFullYear(), d1.getMonth() + 1, 0);
-					return d1.workingDaysBefore(d2); 
+					return d1.workingDaysBefore(d2);
 				}],
 				"year": [1, [Token.TYPE.T_DATE], Token.TYPE.T_NUMBER, function(a) { return a.getFullYear(); }]
 			};
 			if (func.value === "defined") {
-				if (args.length < 1) { 
+				if (args.length < 1) {
 					throw new Error("Illegal number (" + args.length + ") of operands for function" + func);
 				}
 				var arg = args.pop();
@@ -2856,22 +2856,22 @@ THE SOFTWARE.
 						return new Token(Token.TYPE.T_UNDEFINED, [arg]);
 					}
 					var type = functions[func.value][1][argc - 1];
-					if (arg.type != type) { 
+					if (arg.type != type) {
 						var expected = "";
 						switch (type) {
 							case Token.TYPE.T_NUMBER:
 								expected = "number";
 								break;
-							case Token.TYPE.T_DATE: 
+							case Token.TYPE.T_DATE:
 								expected = "date";
 								break;
 							case Token.TYPE.T_BOOLEAN:
 								expected = "boolean";
 								break;
-							case Token.TYPE.T_TEXT: 
+							case Token.TYPE.T_TEXT:
 								expected = "text";
 								break;
-							case Token.TYPE.T_ARRAY: 
+							case Token.TYPE.T_ARRAY:
 								expected = "array";
 								break;
 						}
@@ -2884,7 +2884,7 @@ THE SOFTWARE.
 						return new Token(Token.TYPE.T_UNDEFINED, [arg]);
 					}
 				}
-				argv.unshift(arg.value); 
+				argv.unshift(arg.value);
 			}
 			if (variableArgsCount) {
 				argv = [argv];
@@ -3089,7 +3089,7 @@ THE SOFTWARE.
 		this.actionsAdapter = rules.actionsAdapter;
 	}
 
-	RuleEngine.prototype = { 
+	RuleEngine.prototype = {
 		runAll: function(conditionsAdapter, cb) {
 			var self = this;
 			$.each(self.rulesData, function(r, rule) {
@@ -3151,8 +3151,8 @@ THE SOFTWARE.
 				var actionData = this.ifActions[i];
 				var actionName = actionData.value;
 				var actionFunction = actionsAdapter[actionName]
-				if (actionFunction) { 
-					actionFunction(new Finder(actionData)); 
+				if (actionFunction) {
+					actionFunction(new Finder(actionData));
 				}
 			}
 		},
@@ -3162,13 +3162,13 @@ THE SOFTWARE.
 				var actionData = this.elseActions[i];
 				var actionName = actionData.value;
 				var actionFunction = actionsAdapter[actionName]
-				if (actionFunction) { 
-					actionFunction(new Finder(actionData)); 
+				if (actionFunction) {
+					actionFunction(new Finder(actionData));
 				}
 			}
 		},
 
-	 
+
 	};
 
 	function Finder(data) {
@@ -3181,8 +3181,8 @@ THE SOFTWARE.
 		  for (var i=0; i < arguments.length; i++) {
 			var name = arguments[i];
 			currentNode = findByName(name, currentNode);
-			if (!currentNode) { 
-				return null; 
+			if (!currentNode) {
+				return null;
 			}
 		  }
 		  return currentNode.value;
@@ -3283,11 +3283,16 @@ THE SOFTWARE.
 				e.stopPropagation();
 				return false;
 			});
-			$( ".disposition-classic select").each(function(k) {
-				if (! this.hasAttribute('data-widget')) {
-					$(this).listbox();
-				}
-			});
+
+			// Disables Listbox widget
+			// Remember to reminify after changing
+			// https://github.com/eureka2/G6K/issues/12
+			//$( ".disposition-classic select").each(function(k) {
+			//	if (! this.hasAttribute('data-widget')) {
+			//		$(this).listbox();
+			//	}
+			//});
+			
 			if (this.isDynamic) {
 				var view = $('input[name=view]').eq(0).val();
 				var step = $('input[name=step]').eq(0).val();
@@ -3450,13 +3455,13 @@ THE SOFTWARE.
 							case 'date':
 								this.setError(name, Translator.trans("This value is not in the expected format (%format%)",  { "format": Translator.trans("d/m/Y") }, 'messages'));
 								break;
-							case 'number': 
+							case 'number':
 								this.setError(name, Translator.trans("This value is not in the expected format (%format%)",  { "format": Translator.trans("numbers only") }, 'messages'));
 								break;
-							case 'integer': 
+							case 'integer':
 								this.setError(name, Translator.trans("This value is not in the expected format (%format%)",  { "format": Translator.trans("numbers only") }, 'messages'));
 								break;
-							case 'money': 
+							case 'money':
 								this.setError(name, Translator.trans("This value is not in the expected format (%format%)",  { "format": Translator.trans("amount") }, 'messages'));
 								break;
 							case 'percent':
@@ -3941,8 +3946,8 @@ THE SOFTWARE.
 			if (data.rulesConditionsDependency) {
 				$.each(data.rulesConditionsDependency, function(r) {
 					self.rulesengine.run(
-						data.rulesConditionsDependency[r] - 1, 
-						self.variables, 
+						data.rulesConditionsDependency[r] - 1,
+						self.variables,
 						function(err, result) {
 							if (err) {  }
 						}
@@ -3952,8 +3957,8 @@ THE SOFTWARE.
 			if (data.rulesActionsDependency) {
 				$.each(data.rulesActionsDependency, function(r) {
 					self.rulesengine.run(
-						data.rulesActionsDependency[r] - 1, 
-						self.variables, 
+						data.rulesActionsDependency[r] - 1,
+						self.variables,
 						function(err, result) {
 							if (err) {  }
 						}
@@ -4088,7 +4093,7 @@ THE SOFTWARE.
 				} else {
 					value = param.constant;
 				}
-				if (value == null) { 
+				if (value == null) {
 					if (param.optional == '0') {
 						ok = false;
 						return false;
@@ -4175,9 +4180,9 @@ THE SOFTWARE.
 							});
 						}
 					} else if (returnType == 'xml'|| returnType == 'html') {
-						// result = document.evaluate(returnPath, $(result).get(0), null, XPathResult.FIRST_ORDERED_NODE_TYPE, null); 
+						// result = document.evaluate(returnPath, $(result).get(0), null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
 						// result = result.singleNodeValue.textContent;
-						var snapshot = document.evaluate(returnPath, $(result).get(0), null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null); 
+						var snapshot = document.evaluate(returnPath, $(result).get(0), null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
 						result = [];
 						try {
 							for (var i = 0, len = snapshot.snapshotLength; i < len; i++) {
@@ -4382,7 +4387,7 @@ THE SOFTWARE.
 			});
 			var actionsAdapter = {
 				notifyError: function(data) {
-					var errorMessage = data.find("message"); 
+					var errorMessage = data.find("message");
 					var target = data.find("target");
 					switch (target) {
 						case 'data':
@@ -4399,7 +4404,7 @@ THE SOFTWARE.
 					}
 				},
 				notifyWarning: function(data) {
-					var warningMessage = data.find("message"); 
+					var warningMessage = data.find("message");
 					var target = data.find("target");
 					switch (target) {
 						case 'data':
@@ -4577,7 +4582,7 @@ THE SOFTWARE.
 								if (field.attr('data-type') === 'choice' && (!field.attr('data-expanded') || field.attr('data-expanded') === 'false')) {
 									var input = field.find("input.listbox-input, select");
 									if (input.is('select')) {
-										input.hideOption(choiceId); 
+										input.hideOption(choiceId);
 									} else {
 										input.listbox('hideItem', choiceId);
 									}
@@ -4668,7 +4673,7 @@ THE SOFTWARE.
 								if (field.attr('data-type') === 'choice' && (!field.attr('data-expanded') || field.attr('data-expanded') === 'false')) {
 									var input = field.find("input.listbox-input, select");
 									if (input.is('select')) {
-										input.showOption(choiceId); 
+										input.showOption(choiceId);
 									} else {
 										input.listbox('showItem', choiceId);
 									}
@@ -4695,14 +4700,14 @@ THE SOFTWARE.
 			$(".simulator-profiles ul li").bind("click", function () {
 				self.setProfile($(this));
 				return true;
-			}); 
+			});
 
 			$(".simulator-profiles ul li").bind("keydown", function (event) {
 				if (event.keyCode == 13 || event.keyCode == 32) {
 					self.setProfile($(this));
 				}
 				return true;
-			}); 
+			});
 
 			$("#g6k_form input[name], #g6k_form select[name], #g6k_form textarea[name]").change(function () {
 				var name = self.normalizeName($(this).attr('name'));
@@ -4734,13 +4739,13 @@ THE SOFTWARE.
 						case 'date':
 							self.setError(name, Translator.trans("This value is not in the expected format (%format%)",  { "format": Translator.trans("d/m/Y") }, 'messages'));
 							break;
-						case 'number': 
+						case 'number':
 							self.setError(name, Translator.trans("This value is not in the expected format (%format%)",  { "format": Translator.trans("numbers only") }, 'messages'));
 							break;
-						case 'integer': 
+						case 'integer':
 							self.setError(name, Translator.trans("This value is not in the expected format (%format%)",  { "format": Translator.trans("numbers only") }, 'messages'));
 							break;
-						case 'money': 
+						case 'money':
 							self.setError(name, Translator.trans("This value is not in the expected format (%format%)",  { "format": Translator.trans("amount") }, 'messages'));
 							break;
 						case 'percent':
@@ -5039,4 +5044,3 @@ $.fn.focusNextInputField = function() {
 		return false;
 	});
 };
-
