@@ -10,7 +10,7 @@ window.addEventListener('message',function(event) {
 
     /* Only reply to the store */
     /* Security stuff */
-	if(event.origin !== 'https://cartegrise-pref-fr.myshopify.com') return;
+	if(event.origin !== 'https://carte-grise-pref-fr') return;
 
 	/* Parse data and determine if it's something the screen needs */
 	/* This is to counteract the iFrameResizer we have on the parent page */
