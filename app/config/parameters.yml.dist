@@ -1,7 +1,7 @@
 parameters:
     database_driver:   pdo_mysql
-    database_name:     elitpixy_g6k
-    database_user:     elitpixy_g6k
+    database_name:     g6k
+    database_user:     g6k
     database_host:     localhost
     database_port:     3306
     database_password: password1

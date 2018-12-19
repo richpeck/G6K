@@ -194,7 +194,7 @@ class Database {
 		$this->databasesDir = $databasesDir;
 		$this->id = $id;
 		$this->type = $type;
-		$this->name = 'elitpixy_g6k'; //$name;
+		$this->name = 'g6k'; //$name;
 	}
 
 	/**
