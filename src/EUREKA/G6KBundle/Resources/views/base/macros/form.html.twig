@@ -45,13 +45,13 @@ THE SOFTWARE.
 {%- for panel in step.panels -%}
 		{%- if panel.displayable or (step.dynamic and context.script == 1) or (simu.dynamic and step.id == 0) -%}
 			{% set panels = panels + 1 %}
-		{% endif %}	
+		{% endif %}
 		{%- for blck in panel.fieldSets -%}
 		{%- if blck.displayable or (step.dynamic and context.script == 1) or (simu.dynamic and step.id == 0) -%}
 			{% set blocks = blocks + 1 %}
 			{%- if blck.class == 'FieldSet' -%}
 				{% set fieldsets = fieldsets + 1 %}
-			{% endif %}	
+			{% endif %}
 		{% endif %}
 	{% endfor %}
 {% endfor %}
@@ -256,7 +256,7 @@ THE SOFTWARE.
 <h2 class="sr-only">{{ 'Steps of your simulation'|trans }}</h2>
 <ol class="simulator-breadcrumb-{{ steps }} simulator-breadcrumb-{{ steps }}-{{ step.id }}">
 {%- for s in simu.steps -%}
-	{% if s.id > 0 and s.displayable and (s.output is empty or s.output == 'normal') %} 
+	{% if s.id > 0 and s.displayable and (s.output is empty or s.output == 'normal') %}
 		{% set stepnum = stepnum + 1 %}
 		{% if s.id == step.id %}
 		<li class="current" title="{{ 'Current step'|trans }} : {{ s.label|fnref }}"><p><span class="sr-only">{{ 'Current step'|trans }}</span><strong><span>{{ stepnum }}</span> <span>{{ s.label|fnref }}</span></strong></p></li>
@@ -272,9 +272,6 @@ THE SOFTWARE.
 
 {% macro requiredmention(context) %}
 {% set step = context.step %}
-{% if step.hasRequiredFields %}
-<p class="mention-asterisk">{{ 'Fields marked with an %asterisk% are required.'|trans({ '%asterisk%': '<span class="asterisk">*</span>' })|nofilter }}</p>
-{% endif %}
 {% endmacro %}
 
 {% macro paragraphs(text) %}
