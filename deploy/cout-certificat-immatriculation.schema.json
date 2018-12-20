@@ -1,0 +1,466 @@
+{
+    "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+    "type": "object",
+    "title": "cout-certificat-immatriculation",
+    "description": "Données de références pour le calcul du coût du cerficat d'immatriculation",
+    "properties": {
+        "baremeDemarche": {
+            "type": "array",
+            "title": "Barème par nature de démarche",
+            "description": "Barème applicable selon la nature de la démarche",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:22, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "demarche": {
+                        "type": "string",
+                        "title": "Démarche [type:text]",
+                        "description": "Libellé de la démarche"
+                    },
+                    "baremeMotoMoins125": {
+                        "type": "number",
+                        "title": "Barème moto (2 ou 3 roues) de moins de 125cm3 [type:number]",
+                        "description": "Barème applicable à une moto (2 ou 3 roues) de moins de 125cm3 pour cette démarche",
+                        "default": 0
+                    },
+                    "baremeAutre": {
+                        "type": "number",
+                        "title": "Barème autre véhicule [type:number]",
+                        "description": "Barème applicable aux autres types de véhicule pour cette démarche",
+                        "default": 0
+                    }
+                },
+                "required": [
+                    "id",
+                    "demarche",
+                    "baremeMotoMoins125",
+                    "baremeAutre"
+                ]
+            }
+        },
+        "baremeVehicule": {
+            "type": "array",
+            "title": "Barème par type de véhicule",
+            "description": "Barème applicable selon le type de véhicule",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:23, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "typeVehicule": {
+                        "type": "string",
+                        "title": "Type de véhicule [type:text]",
+                        "description": "Type de véhicule"
+                    },
+                    "baremeMoins10": {
+                        "type": "number",
+                        "title": "Barème véhicule neuf ou moins de 10 ans [type:number]",
+                        "description": "Barème applicable à un véhicule neuf ou de moins de 10 ans"
+                    },
+                    "baremePlus10": {
+                        "type": "number",
+                        "title": "Barème véhicule de plus de 10 ans [type:number]",
+                        "description": "Barème applicable à un véhicule de plus de 10 ans"
+                    },
+                    "taxeFPTransport": {
+                        "type": "number",
+                        "title": "Taxe formation professionnelle dans les transports [type:money]",
+                        "description": "Y2 - Taxe en euros sur la formation professionnelle dans les transports en fonction du PTAC"
+                    }
+                },
+                "required": [
+                    "id",
+                    "typeVehicule",
+                    "baremeMoins10",
+                    "baremePlus10",
+                    "taxeFPTransport"
+                ]
+            }
+        },
+        "malusCV": {
+            "type": "array",
+            "title": "Montants du malus selon la puissance fiscale",
+            "description": "Montants du malus selon la puissance fiscale du véhicule et l'année d'achat",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:57, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "annee": {
+                        "type": "integer",
+                        "title": "Année d'achat du véhicule [type:year]",
+                        "description": "Année d'achat du véhicule"
+                    },
+                    "minCV": {
+                        "type": "integer",
+                        "title": "Borne inférieure du nombre de CV [type:integer]",
+                        "description": "Borne inférieure du nombre de CV fiscaux"
+                    },
+                    "maxCV": {
+                        "type": "integer",
+                        "title": "Borne supérieure du nombre de CV [type:integer]",
+                        "description": "Borne supérieure du nombre de CV fiscaux"
+                    },
+                    "malus": {
+                        "type": "number",
+                        "title": "Montant du malus [type:money]",
+                        "description": "Montant du malus en euros",
+                        "default": 0
+                    }
+                },
+                "required": [
+                    "id",
+                    "annee",
+                    "minCV",
+                    "maxCV",
+                    "malus"
+                ]
+            }
+        },
+        "malusCO2": {
+            "type": "array",
+            "title": "Montants du malus selon le taux d'émission de CO2 par kilomètre",
+            "description": "Montants du malus en fonction du nombre de grammes de CO2 émis par kilomètre et l'année d'achat",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:207, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "annee": {
+                        "type": "integer",
+                        "title": "Année d'achat du véhicule [type:year]",
+                        "description": "Année d'achat du véhicule"
+                    },
+                    "minCO2": {
+                        "type": "integer",
+                        "title": "Borne inférieure du taux d'émission de CO2 [type:integer]",
+                        "description": "Borne inférieure du nombre de grammes de CO2 émis par kilomètre"
+                    },
+                    "maxCO2": {
+                        "type": "integer",
+                        "title": "Borne supérieure du taux d'émission de CO2 [type:integer]",
+                        "description": "Borne supérieure du nombre de grammes de CO2 émis par kilomètre"
+                    },
+                    "malus": {
+                        "type": "number",
+                        "title": "Montant du malus [type:money]",
+                        "description": "Montant du malus en euros",
+                        "default": 0
+                    }
+                },
+                "required": [
+                    "id",
+                    "annee",
+                    "minCO2",
+                    "maxCO2",
+                    "malus"
+                ]
+            }
+        },
+        "taxeAdditionnelleCO2": {
+            "type": "array",
+            "title": "Taxe additionnelle CO2",
+            "description": "Taxe additionnelle CO2 en fonction du nombre de grammes de CO2 émis par kilomètre et l'année d'achat pour les véhicules ayant fait l'objet d'une réception communautaire",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:15, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "annee": {
+                        "type": "integer",
+                        "title": "Année d'achat du véhicule [type:year]",
+                        "description": "Année d'achat du véhicule"
+                    },
+                    "tranche": {
+                        "type": "integer",
+                        "title": "Tranche du barême taxe additionnelle CO2 [type:integer]",
+                        "description": "Tranche du barême taxe additionnelle CO2"
+                    },
+                    "minCO2": {
+                        "type": "integer",
+                        "title": "Borne inférieure du taux d'émission de CO2 [type:integer]",
+                        "description": "Borne inférieure du nombre de grammes de CO2 émis par kilomètre"
+                    },
+                    "maxCO2": {
+                        "type": "integer",
+                        "title": "Borne supérieure du taux d'émission de CO2 [type:integer]",
+                        "description": "Borne supérieure du nombre de grammes de CO2 émis par kilomètre"
+                    },
+                    "taxeParGramme": {
+                        "type": "number",
+                        "title": "Montant en euros de la taxe par gramme de CO2 [type:money]",
+                        "description": "Montant en euros de la taxe par gramme de CO2 émis par kilomètre",
+                        "default": 0
+                    }
+                },
+                "required": [
+                    "id",
+                    "annee",
+                    "tranche",
+                    "minCO2",
+                    "maxCO2",
+                    "taxeParGramme"
+                ]
+            }
+        },
+        "taxeAdditionnelleCV": {
+            "type": "array",
+            "title": "Taxe additionnelle selon la puissance fiscale",
+            "description": "Taxe additionnelle en fonction de la puissance fiscale et l'année d'achat pour les véhicules n'ayant pas fait l'objet d'une réception communautaire",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:19, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "annee": {
+                        "type": "integer",
+                        "title": "Année d'achat du véhicule [type:year]",
+                        "description": "Année d'achat du véhicule"
+                    },
+                    "minCV": {
+                        "type": "integer",
+                        "title": "Borne inférieure du nombre de CV [type:integer]",
+                        "description": "Borne inférieure du nombre de CV fiscaux"
+                    },
+                    "maxCV": {
+                        "type": "integer",
+                        "title": "Borne supérieure du nombre de CV [type:integer]",
+                        "description": "Borne supérieure du nombre de CV fiscaux"
+                    },
+                    "taxe": {
+                        "type": "number",
+                        "title": "Montant en euros de la taxe [type:money]",
+                        "description": "Montant en euros de la taxe",
+                        "default": 0
+                    }
+                },
+                "required": [
+                    "id",
+                    "annee",
+                    "minCV",
+                    "maxCV",
+                    "taxe"
+                ]
+            }
+        },
+        "taxeRegionale": {
+            "type": "array",
+            "title": "Taxe régionale",
+            "description": "Y1 - Taxe régionale pour 1 CV fiscal",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:31, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "regionId": {
+                        "type": "integer",
+                        "title": "Région [type:choice, datasource:cout-certificat-immatriculation, returnType:assocArray, valueColumn:codeRegion, labelColumn:name, request:select * from regions order by name]",
+                        "description": "Identifiant de la région dans la table des régions"
+                    },
+                    "taxe": {
+                        "type": "number",
+                        "title": "Montant en euros de la taxe régionale [type:money]",
+                        "description": "Montant en euros de la taxe pour 1 CV fiscal",
+                        "default": 0
+                    },
+                    "exoVehiculePropre": {
+                        "type": "number",
+                        "title": "Pourcentage exonération véhicules propres [type:percent]",
+                        "description": "Pourcentage d’exonération de la taxe régionale pour les véhicules propres"
+                    }
+                },
+                "required": [
+                    "id",
+                    "regionId",
+                    "taxe",
+                    "exoVehiculePropre"
+                ]
+            }
+        },
+        "regions": {
+            "type": "array",
+            "title": "Régions",
+            "description": "Régions",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:32, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "codeRegion": {
+                        "type": "integer",
+                        "title": "Code région [type:integer]",
+                        "description": "Code de la région"
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "Nom de la région [type:text]",
+                        "description": "Nom de la région"
+                    }
+                },
+                "required": [
+                    "id",
+                    "codeRegion",
+                    "name"
+                ]
+            }
+        },
+        "departements": {
+            "type": "array",
+            "title": "Départements",
+            "description": "Départements",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:101, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "codeDep": {
+                        "type": "string",
+                        "title": "Code du département [type:department]",
+                        "description": "Code du département"
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "Nom du département [type:text]",
+                        "description": "Nom du département"
+                    },
+                    "regionId": {
+                        "type": "integer",
+                        "title": "Région [type:choice, datasource:cout-certificat-immatriculation, returnType:assocArray, valueColumn:codeRegion, labelColumn:name, request:select * from regions order by name]",
+                        "description": "Identifiant de la région d'appartenance dans la table des régions"
+                    }
+                },
+                "required": [
+                    "id",
+                    "codeDep",
+                    "name",
+                    "regionId"
+                ]
+            }
+        },
+        "energies": {
+            "type": "array",
+            "title": "Catégories énergétiques",
+            "description": "Catégories énergétiques",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:15, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "energie": {
+                        "type": "string",
+                        "title": "Energie [type:text]",
+                        "description": "Libellé énergie"
+                    },
+                    "pourcentMalusCO2": {
+                        "type": "number",
+                        "title": "Pourcentage sur le taux CO2 [type:percent]",
+                        "description": "Pourcentage sur le taux CO2"
+                    },
+                    "pourcentTaxeAdditionnelle": {
+                        "type": "number",
+                        "title": "Pourcentage de la taxe additionnelle [type:percent]",
+                        "description": "Pourcentage de la taxe additionnelle"
+                    },
+                    "energiePropre": {
+                        "type": "boolean",
+                        "title": "Energie propre ? [type:boolean]",
+                        "description": "Energie propre permettant une exonération totale ou partielle de la taxe régionale"
+                    }
+                },
+                "required": [
+                    "id",
+                    "energie",
+                    "pourcentMalusCO2",
+                    "pourcentTaxeAdditionnelle",
+                    "energiePropre"
+                ]
+            }
+        },
+        "prelevementadditionnel": {
+            "type": "array",
+            "title": "prelevementadditionnel",
+            "description": "<p>Prélèvement additionnel grosse cylindrée<\/p>",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "id [primarykey:1, autoincrement:51, type:integer]",
+                        "description": "Identifiant interne"
+                    },
+                    "annee": {
+                        "type": "integer",
+                        "title": "Année de la démarche [type:year]",
+                        "description": ""
+                    },
+                    "borneinf": {
+                        "type": "integer",
+                        "title": "borne inférieure [type:integer]",
+                        "description": ""
+                    },
+                    "bornesup": {
+                        "type": "integer",
+                        "title": "borne supérieure [type:integer]",
+                        "description": ""
+                    },
+                    "montantCV": {
+                        "type": "number",
+                        "title": "montant par CV [type:money]",
+                        "description": ""
+                    }
+                },
+                "required": [
+                    "id",
+                    "annee",
+                    "borneinf",
+                    "bornesup",
+                    "montantCV"
+                ]
+            }
+        }
+    },
+    "required": [
+        "baremeDemarche",
+        "baremeVehicule",
+        "malusCV",
+        "malusCO2",
+        "taxeAdditionnelleCO2",
+        "taxeAdditionnelleCV",
+        "taxeRegionale",
+        "regions",
+        "departements",
+        "energies",
+        "prelevementadditionnel"
+    ]
+}

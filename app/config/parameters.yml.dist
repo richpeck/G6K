@@ -7,9 +7,9 @@ parameters:
     database_password: password1
 
     mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_host: smtp.sengrid.net
+    mailer_user: apikey
+    mailer_password: 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
 
     locale:            en
     secret:            ChangeThisTokenWithASecretOne

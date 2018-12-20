@@ -1,0 +1,1741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="cout-certificat-immatriculation" label="Simulateur du coût du certificat d'immatriculation" defaultView="particuliers" referer="https://www.service-public.fr/particuliers/vosdroits/R39696" dynamic="1" memo="0">
+	<Description><![CDATA[
+La délivrance d'un certificat d'immatriculation (carte grise) est soumise au paiement de taxes et redevance.
+Pour réaliser la simulation, il est nécessaire de se munir de la carte grise du véhicule s'il est déjà immatriculé. En cas de demande de duplicata, consulter l'aide associée au champ "date de mise en circulation".<b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
+<b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b>Attention </b>:<b> la nouvelle taxe sur les voitures particulières (VP) de forte puissance (36 CV et plus) ne s'applique qu'aux voitures acquises à partir du 1er janvier 2018. Cette donnée n'est pas connue du simulateur. Le montant calculé par le simulateur pour cette taxe peut donc être à déduire si ce n'est pas le cas.  </b>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after">
+		<Data id="1" name="demarche" label="Démarche" type="choice">
+			<Description><![CDATA[
+<u>Première immatriculation en France d'un véhicule</u>
+Cela concerne les véhicules :
+- achetés neuf en France,
+- achetés neuf à l'étranger et importés en France,
+- loués neuf, avec option d'achat ou pour une durée d’au moins 2 ans, en France ou à l'étranger et importés en France,
+- achetés d'occasion à l'étranger et importés en France.
+<u>Nouvelle immatriculation d'un véhicule d'occasion</u>
+Si vous achetez un véhicule d'occasion en France, vous avez un mois, à partir de la date inscrite sur le certificat de cession, pour le faire immatriculer.
+<u>Duplicata</u>
+Vous pouvez obtenir un duplicata de votre certificat d'immatriculation si votre original a été volé, perdu ou détérioré.
+En cas de vol vous devez préalablement faire une déclaration au commissariat ou à la gendarmerie.
+<u>Changement de domicile</u>
+Si vous déménagez, vous devez faire modifier l'adresse sur votre certificat d'immatriculation dans le délai d'un mois, même si vous souhaitez vendre votre véhicule.
+<u>Changement d’état matrimonial (mariage, divorce, veuvage)</u>
+Les certificats d'immatriculation délivrés à la suite d'un changement de situation matrimoniale sont délivrés gratuitement sur présentation des pièces justificatives adéquates. Cela concerne les demandes :
+
+<ul>
+
+<li>après mariage :
+
+<ul>
+
+<li>d’adjonction du nom de femme mariée au nom de jeune fille,</li>
+
+<li>d’immatriculation sous la formule «Monsieur et Madame» ou «Monsieur ou Madame» d'un véhicule immatriculé au nom de jeune fille de l'épouse ou au nom du mari antérieurement au mariage,</li>
+
+</ul>
+
+</li>
+
+<li>après divorce :
+
+<ul>
+
+<li>de suppression du nom de femme mariée,</li>
+
+<li>d’immatriculation au nom de l'époux ou de l'épouse bénéficiaire d'un véhicule précédemment immatriculé au nom de l'autre époux, ou des deux époux,</li>
+
+</ul>
+
+</li>
+
+<li>en cas de veuvage :
+
+<ul>
+
+<li>de modification de la mention relative à la situation de femme mariée,</li>
+
+<li>d’immatriculation au nom du conjoint survivant d'un véhicule antérieurement immatriculé au nom de l'époux décédé.</li>
+
+<li>d’immatriculation au nom du conjoint survivant d'un véhicule antérieurement immatriculé au nom des deux époux.</li>
+
+</ul>
+
+</li>
+
+</ul>
+<u>Usurpation du numéro d'immatriculation du véhicule</u>
+Un nouveau numéro d’immatriculation vous sera attribué en cas de vol ou d’usurpation de vos plaques d’immatriculation, sur présentation du dépôt de plainte.
+<u>Modification des caractéristiques techniques du véhicule</u>
+Vous devez faire une déclaration si vous effectuez une des transformations suivantes sur votre véhicule :
+
+<ul>
+
+<li>modification affectant les caractéristiques suivantes de la notice descriptive : puissance, poids et dimensions, essieux, freinage, organes de manœuvre, de direction et de visibilité, énergie, émissions polluantes et nuisances (bruit),</li>
+
+<li>modification des indications d'ordre technique du certificat d'immatriculation (marque, type, genre, catégorie, ...), à l'exception du poids à vide, et de modifications mineures de la carrosserie,</li>
+
+<li>modification du genre du véhicule,</li>
+
+<li>remplacement autrement qu'à l'identique de la coque pour les véhicules sans châssis,</li>
+
+<li>débridage d'une moto effectué par un professionnel, la faisant passer de la catégorie A2 à A.</li>
+
+</ul>
+<u>Modification de l'usage du véhicule </u>
+Sont notamment concernées par la déclaration :
+
+<ul>
+
+<li>l'aménagement d'une camionnette en camping-car,</li>
+
+<li>l'aménagement d'une voiture en ambulance ou en véhicule pouvant transporter une personne en fauteuil roulant,</li>
+
+<li>la transformation d'un véhicule utilitaire en véhicule particulier ou l'inverse,</li>
+
+<li>l'adjonction d'un side-car.</li>
+
+</ul>
+<u>Certificat W garage</u>
+Le certificat W garage permet de faire circuler un véhicule à titre provisoire, avant son immatriculation définitive. Il est uniquement délivré aux réparateurs, vendeurs, transporteurs, carrossiers, importateurs et constructeurs pour l'utilisation de certains types de véhicules.
+<u>Passage en véhicule de collection</u>
+Le « véhicule de collection » doit avoir plus de 30 ans. Le passage en véhicule de collection n’est pas obligatoire. La mention « véhicule de collection » figure en rubrique Z sur la carte grise (certificat d'immatriculation).
+<u>Héritage (hors veuvage) d’un véhicule</u>
+Voir page suivante : <a href="https://www.service-public.fr/particuliers/vosdroits/F1480" target="_blank">https://www.service-public.fr/particuliers/vosdroits/F1480</a>
+Ne sont pas concernées par cette démarche, la demande de modification de la mention relative à la situation de femme mariée et la demande d’immatriculation au nom du conjoint survivant d'un véhicule antérieurement immatriculé au nom de l'époux décédé ou au nom des deux époux. Ces deux démarches relèvent d’un changement de situation matrimoniale.
+<u>Ajout d’un autre propriétaire (hors conjoint)</u>
+Concerne l’ajout en tant que co-titulaire du certificat, le concubin, le partenaire pacsé ou toute autre personne ayant un lien de parenté ou non avec le titulaire.
+			]]></Description>
+			<Choices>
+				<Source id="11" valueColumn="id" labelColumn="demarche" />
+			</Choices>
+		</Data>
+		<Data id="2" name="franceOuImport" label="Lieu d'achat" type="choice" default="0">
+			<Choices>
+				<Choice id="1" value="1" label="Acheté neuf en France ou à l'étranger" />
+				<Choice id="2" value="2" label="Importé en France après avoir été immatriculé dans un autre pays" />
+			</Choices>
+		</Data>
+		<Data id="3" name="quatriemeChangementDomicile" label="Quatrième changement de domicile" type="choice">
+			<Description><![CDATA[
+Au 4ème changement d'adresse, un nouveau certificat doit être établi. Vous devrez restituer l'ancien certificat à la préfecture (ou à la préfecture de police de Paris).
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="4" name="modificationEnergiePropre" label="Modification pour faire fonctionner à l'énergie propre" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="5" name="typeVehicule" label="Type de véhicule" type="choice">
+			<Description><![CDATA[
+Le genre national du véhicule est mentionné à la rubrique 'J.1' de la carte grise.
+Le montant du certificat varie selon le genre du véhicule.
+			]]></Description>
+			<Choices>
+				<Source id="13" valueColumn="id" labelColumn="typeVehicule" />
+			</Choices>
+		</Data>
+		<Data id="6" name="dateMiseEnCirculation" label="Date de mise en circulation" type="date" default="now">
+			<Description><![CDATA[
+L'ancienneté du véhicule se calcule à partir de la date de 1ère mise en circulation. Les véhicules de plus de 10 ans d'âge bénéficient pour certaines opérations d'une réduction du taux du cheval fiscal (CV).
+
+Cas d'un véhicule importé : en cas de 1ère immatriculation en France
+d'une voiture particulière (VP) déjà immatriculée à l'étranger, la date
+de 1ère immatriculation à l'étranger doit être renseignée. Elle ne joue
+pas sur le taux du CV mais peut donner lieu à une réduction du malus
+C0². Cas du duplicata : s'il vous est demandé de saisir une date de mise en circulation mais que vous avez perdu la carte grise et ne disposez pas d'une photocopie, sachez que la date ne joue que si le véhicule a plus de 10 ans, peu de chevaux fiscaux et bénéficie d'abattements. Vous pouvez saisir la date approximative.
+			]]></Description>
+		</Data>
+		<Data id="7" name="invalidite" label="Invalidité" type="choice" default="2">
+			<Description><![CDATA[
+Les voitures particulières :
+- à carrosserie " Handicap "
+- ou acquises par une personne titulaire de la carte d'invalidité ou "mobilité inclusion" portant la mention invalidité
+- ou acquises par le parent d’un enfant mineur ou à charge, et du même foyer fiscal, lui-même titulaire d'une des cartes citées plus haut
+sont exonérés du malus écologique et de la taxe additionnelle sur les véhicules les plus polluants.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="8" name="typeImmatriculation" label="Type d'immatriculation" type="choice">
+			<Description><![CDATA[
+Depuis le 15 octobre 2009, toute demande de duplicata pour un véhicule immatriculé avec l'ancien numéro FNI entraîne la conversion dans le nouveau système SIV. Le véhicule se voit attribuer un nouveau numéro au format AA-123-BB. Il en est de même lors d'un changement de domicile.
+Le duplicata diffère du certificat d'immatriculation original que par l’impression au niveau des rubriques Z.1 à Z.4 de la mention « Duplicata + date du duplicata ».  Il reprend tous les éléments du certificat d’immatriculation, répond aux mêmes exigences de sécurisation et obéit au même processus de production par l’Imprimerie Nationale et d’expédition par la Poste du titre à l’adresse du titulaire.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="1234 AB 01 (immatriculation FNI jusqu'au 14/10/2009)" />
+				<Choice id="2" value="2" label="AA-123-BB (immatriculation SIV depuis le 15/04/2009)" />
+			</Choices>
+		</Data>
+		<Data id="9" name="neufOuMoinsDe10" label="Neuf ou moins de 10 ans" type="boolean" />
+		<Data id="10" name="moisEntames" label="mois entamés depuis première immatriculation à l'étranger (malus) ou en France (taxe)" type="integer" />
+		<Data id="11" name="anneesEntamees" label="Années entamées depuis première immatriculation à l'étranger (malus) ou en France (taxe)" type="integer" />
+		<Data id="12" name="receptionCommunautaire" label="Réception communautaire" type="choice" default="1">
+			<Description><![CDATA[
+La réception communautaire d'un véhicule est l’acte par lequel un Etat atteste de la conformité du véhicule aux réglementations concernant les exigences techniques applicables pour la sécurité et les émissions de véhicules.
+Cette opération peut être accordée :
+- par type, sur la base d’un prototype représentatif d’un véhicule produit en série par un constructeur (véhicules neufs uniquement),
+- à titre individuel (ou à titre isolé) à un aménageur, à un constructeur ou à un particulier, pour un véhicule donné (neuf, transformé, importé ou démuni de certificat d’immatriculation).
+Le champ 'K' de la carte grise correspond au numéro de réception par type si celui-ci est disponible. Le champ 'D.2.1' correspond au code national d’identification du type (en cas de réception communautaire).
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="13" name="declareVehiculeDemonstration" label="Véhicule de demonstration" type="choice" default="2">
+			<Description><![CDATA[
+Peut être affecté à la démonstration tout véhicule soumis à immatriculation, quel que soit son genre et sa carrosserie, répondant aux conditions suivantes :
+
+<ul>
+
+<li>véhicule neuf,</li>
+
+<li>PTAC de moins de 3,5 tonnes,</li>
+
+<li>affecté pour une durée de 3 mois minimum et d'un an maximum à la démonstration.</li>
+
+</ul>
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="14" name="moisDateMiseEnCirculation" label="Mois date de mise en circulation" type="month" content="month(#6)" />
+		<Data id="15" name="jourDateMiseEnCirculation" label="Jour date de mise en circulation" type="day" content="day(#6)" />
+		<Data id="16" name="baremeDemarcheMotoMoins125" label="Barème démarche" type="number" source="2" index="'baremeMotoMoins125'" />
+		<Data id="17" name="baremeDemarcheAutre" label="Barème démarche" type="number" source="2" index="'baremeAutre'" />
+		<Data id="18" name="baremeDemarche" label="Barème démarche" type="number" content="0" />
+		<Data id="19" name="baremeVehiculeMoins10Ans" label="Barème véhicule neuf ou moins de 10 ans" type="number" source="3" index="'baremeMoins10'" />
+		<Data id="20" name="baremeVehiculePlus10Ans" label="Barème véhicule de plus de 10 ans" type="number" source="3" index="'baremePlus10'" />
+		<Data id="21" name="baremeVehicule" label="Barème véhicule" type="number" content="0" />
+		<Data id="22" name="taxeFormationProTransport" label="Taxe formation transport" type="money" source="3" index="'taxeFPTransport'" />
+		<Data id="23" name="puissanceAdministrative" label="Puissance administrative" type="integer" unit="CV">
+			<Description><![CDATA[
+La puissance administrative nationale, appelée aussi puissance fiscale (en chevaux vapeur) est mentionnée à la rubrique 'P.6' de la carte grise.
+La puissance fiscale est utilisée pour le calcul de la taxe CO2 ou du malus écologique si votre véhicule n’a pas fait l’objet d’une réception communautaire.
+			]]></Description>
+		</Data>
+		<Data id="24" name="declareVehiculeDeCollection" label="Véhicule de collection" type="choice" default="2">
+			<Description><![CDATA[
+Les véhicules de plus de 30 ans, à moteur ou remorqués qui ne peuvent faire pas l’objet d’une réception nationale peuvent être immatriculés avec un usage « véhicule de collection ».
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="25" name="energie" label="Energie" type="choice">
+			<Description><![CDATA[
+Le type de carburant ou la source d'énergie utilisé par le véhicule est mentionné à la rubrique 'P.3' de la carte grise.
+Le coût du certificat d’immatriculation inclut notamment une taxe destinée à la région dans laquelle se situe le domicile du propriétaire du véhicule. Le conseil régional ou l’assemblée de Corse peuvent prévoir une exonération totale ou partielle (50 %) pour les véhicules fonctionnant exclusivement ou non au moyen du GPL, du superéthanol, du gaz naturel et de l’électricité.
+			]]></Description>
+			<Choices>
+				<Source id="14" valueColumn="id" labelColumn="energie" />
+			</Choices>
+		</Data>
+		<Data id="26" name="tauxCO2" label="Taux CO2" type="number" unit="g/km">
+			<Description><![CDATA[
+Le taux d'émission en CO2 est mentionné à la rubrique 'V.7' de la carte grise. Il est utilisé pour le calcul de la taxe CO2 ou du malus écologique si votre véhicule a fait l’objet d’une réception communautaire.
+			]]></Description>
+		</Data>
+		<Data id="27" name="transportMarchandises" label="Véhicule destiné au transport de marchandises" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="28" name="departement" label="Département" type="department">
+			<Description><![CDATA[
+Le coût du certificat d’immatriculation inclut notamment une taxe destinée à la région dans laquelle se situe le domicile du propriétaire du véhicule et calculée à partir d’un taux unitaire du cheval vapeur voté par le conseil régional ou l’assemblée de Corse. Ces assemblées peuvent prévoir une exonération totale ou partielle (50 %) pour les véhicules fonctionnant  exclusivement ou non au moyen de certaines énergie plus “propres”.
+<strong>Si vous accomplissez la démarche pour le compte d’une entreprise ou d’une association</strong>, vous devez indiquer le département où se situe l'établissement auquel le véhicule est affecté à titre principal.
+<strong>Si vous accomplissez la démarche pour le compte d’une entreprise de location de véhicules</strong>, vous devez indiquer le département où se situe l'établissement qui procède à la 1ère location du véhicule.
+			]]></Description>
+		</Data>
+		<Data id="29" name="taxeRegionale1CV" label="Taxe régionale par CV" type="money" source="1" index="'taxe'" />
+		<Data id="30" name="exoVehiculePropre" label="Pourcentage d'exonération véhicule propre" type="money" source="1" index="'exoVehiculePropre'" />
+		<Data id="31" name="affecteTransportMarchandises" label="Véhicule destiné au transport de marchandises" type="boolean" />
+		<Data id="32" name="vehiculeDeCollection" label="Véhicule de collection" type="boolean" />
+		<Data id="33" name="pourcentMalusCO2" label="Pourcentage superéthanol sur malus CO2 " type="number" source="15" index="'pourcentMalusCO2'" />
+		<Data id="34" name="pourcentTaxeAdditionnelle" label="Pourcentage superéthanol sur taxe additionnelle (périmé)" type="number" source="15" index="'pourcentTaxeAdditionnelle'" />
+		<Data id="35" name="annee" label="Année" type="year" content="year(now)" />
+		<Data id="36" name="anneeMalus" label="Année Malus (première immatriculation à l'étranger)" type="year" />
+		<Data id="37" name="malusCO2" label="Malus CO2 1ère passe" type="money" source="4" />
+		<Data id="38" name="malusCO2Reduit" label="Malus CO2 réduit" type="money" source="5" />
+		<Data id="39" name="malusCV" label="Malus CV" type="money" source="6" />
+		<Data id="40" name="malus" label="Malus" type="money" content="0" />
+		<Data id="41" name="malusReduit" label="Malus après deuxième réduction véhicue importé" type="money" content="0" />
+		<Data id="42" name="energiePropre" label="Energie propre ?" type="integer" source="15" index="'energiePropre'" />
+		<Data id="43" name="taxeParGrammeCO2Tranche1" label="Taxe par gramme CO2 tranche 1" type="money" source="7" index="'taxeParGramme'" />
+		<Data id="44" name="maxCO2Tranche1" label="Max CO2 tranche 1" type="integer" source="7" index="'maxCO2'" />
+		<Data id="45" name="tauxCO2Tranche1" label="Taux CO2 tranche 1" type="integer" content="min(#44, #26)" />
+		<Data id="46" name="taxeParGrammeCO2Tranche2" label="Taxe additionnelle CO2 tranche 2" type="money" source="8" index="'taxeParGramme'" />
+		<Data id="47" name="maxCO2Tranche2" label="Max CO2 tranche 2" type="integer" source="8" index="'maxCO2'" />
+		<Data id="48" name="tauxCO2Tranche2" label="Taux CO2 tranche 2" type="integer" content="min(#47 - #44, #26 - #45)" />
+		<Data id="49" name="taxeParGrammeCO2Tranche3" label="Taxe additionnelle CO2 tranche 3" type="money" source="9" index="'taxeParGramme'" />
+		<Data id="50" name="maxCO2Tranche3" label="Max CO2 tranche 3" type="integer" source="9" index="'maxCO2'" />
+		<Data id="51" name="tauxCO2Tranche3" label="Taux CO2 tranche 3" type="integer" content="#26 - #45 - #48" />
+		<Data id="52" name="taxeAdditionnelleCV" label="Taxe additionnelle CV" type="money" source="10" />
+		<Data id="53" name="taxeAdditionnelle" label="Taxe additionnelle" type="money" content="0" />
+		<Data id="54" name="taxeAdditionnelleReduite" label="Taxe additionnelle réduite" type="money" content="0" />
+		<Data id="55" name="taxeRegionaleY1AvantExo" label="Y1 - Taxe régionale avant Exonération" type="number" content="0" />
+		<Data id="56" name="taxeRegionaleY1Proportionnelle" label="Y1 - Taxe régionale Proportionnelle" type="number" content="0" />
+		<Data id="57" name="taxeRegionaleY1" label="Y1 - Taxe régionale" type="money" content="0">
+			<Description><![CDATA[
+Le coût du certificat d’immatriculation inclut une taxe destinée à la région dans laquelle se situe le domicile du propriétaire du véhicule et calculée à partir d’un taux unitaire du cheval vapeur voté par le conseil régional ou l’assemblée de Corse. Ces assemblées peuvent prévoir une exonération totale ou partielle (50 %) pour les véhicules fonctionnant exclusivement ou non au moyen du GPL, du superéthanol, du gaz naturel et de l’électricité.
+Pour en savoir plus : <a href="https://www.service-public.fr/particuliers/vosdroits/F19211" target="_blank">https://www.service-public.fr/particuliers/vosdroits/F19211</a>
+			]]></Description>
+		</Data>
+		<Data id="58" name="taxeFormationProfessionnelleY2" label="Y2- Taxe formation profesionnelle" type="money" content="0">
+			<Description><![CDATA[
+Le coût du certificat d’immatriculation inclut une taxe destinée à financer la formation professionnelle dans les transports routiers. Cette taxe concerne exclusivement les véhicules de transport de marchandises (camionnette et camion), les tracteurs routiers et les véhicules de transport en commun.
+Pour en savoir plus : <a href="https://www.service-public.fr/particuliers/vosdroits/F19211" target="_blank">https://www.service-public.fr/particuliers/vosdroits/F19211</a>
+			]]></Description>
+		</Data>
+		<Data id="59" name="taxesVehiculesPolluantsY3" label="Y3 - Taxes véhicules polluants" type="money" content="0">
+			<Description><![CDATA[
+Les taxes sur les véhicules les plus polluants sont le malus écologique et une taxe additionnelle. Elles concernent les voitures particulières (VP).
+Le malus écologique s’applique aux véhicules immatriculés pour la 1ère fois en France.
+Pour en savoir plus : <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F19911">https://www.service-public.fr/particuliers/vosdroits/F19911</a>
+			]]></Description>
+		</Data>
+		<Data id="60" name="taxeGestionY4" label="Y4 - Taxe de gestion" type="money">
+			<Description><![CDATA[
+La délivrance du certificat d'immatriculation d'un véhicule neuf ou d'occasion est soumise à un droit de timbre dit " taxe pour la gestion des certificats d'immatriculation des véhicules " dont le montant est fixé à 4 €.
+Le conseil régional ou l’assemblée de Corse peuvent prévoir une exonération totale ou partielle (50 %) pour les véhicules fonctionnant exclusivement ou non au moyen du GPL, du superéthanol, du gaz naturel et de l’électricité
+			]]></Description>
+		</Data>
+		<Data id="61" name="sousTotal" label="Sous-total" type="money" content="0" />
+		<Data id="62" name="redevanceAcheminementY5" label="Y5 - Redevance acheminement" type="money" content="0">
+			<Description><![CDATA[
+L’acheminement, au domicile du titulaire, d'un certificat d'immatriculation d'un véhicule neuf ou d'occasion donne lieu au versement d'une redevance dont le montant est fixé à 2,76 €.
+Des cas d’exonération sont prévus.
+Pour en savoir plus : <a href="https://www.service-public.fr/particuliers/vosdroits/F19211" target="_blank">https://www.service-public.fr/particuliers/vosdroits/F19211</a>
+			]]></Description>
+		</Data>
+		<Data id="63" name="taxesAPayerY6" label="Y6 - Taxes à payer" type="money" content="0" />
+		<Data id="64" name="taxeAdditionnelleFortePuissance" label="Taxe additionnelle forte puissance" type="money" content="0">
+			<Description><![CDATA[
+Cette taxe additionnelle est due par les voitures de
+tourisme de forte puissance (supérieure ou égale à 36 CV). Elle concerne les
+démarches de première immatriculation ou de changement du titulaire de la carte
+grise.
+			]]></Description>
+		</Data>
+		<Data id="65" name="taxeadditionnellereduiteannees" label="taxe additionnelle CV reduite années" type="money" content="0" />
+		<Data id="66" name="Y3_taxe" label="Y3 Taxe additionnelle CV voitures de tourisme" type="money" content="0">
+			<Description><![CDATA[
+Taxe additionnelle sur les véhicules de tourisme. Elle est fonction de la puissance administrative exprimée en CV en zone P6 de la carte grise.
+			]]></Description>
+		</Data>
+		<Data id="67" name="Y3_Malus" label="Y3 malus CO2 voitures de tourisme" type="money" content="0">
+			<Description><![CDATA[
+Taxe additionnelle sur les véhicules de tourisme. Elle est fonction du taux d'émission du CO2.
+			]]></Description>
+		</Data>
+	</DataSet>
+	<Steps>
+		<Step id="0" name="donnees" label="Données" template="pages:article.html.twig">
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Votre démarche
+						]]></Legend>
+						<Field position="1" data="1" usage="input" label="Sélectionnez votre démarche" prompt=" " required="1" visibleRequired="0" colon="0" underlabel="1" help="1">
+							<PostNote><![CDATA[
+Lorsque le certificat d'immatriculation est demandé pour plusieurs motifs, c'est le motif qui entraine le coût le plus élevé qui est pris en compte.
+							]]></PostNote>
+						</Field>
+						<Field position="2" data="2" usage="input" label="Précisez si le véhicule a été" required="1" visibleRequired="0" underlabel="1" help="0" expanded="1" />
+						<Field position="3" data="3" usage="input" label="Vous avez déjà déclaré 3 changements d'adresse pour ce véhicule et vous voulez en déclarer un 4ème (les 3 emplacements sur la carte grise sont occupés)" required="0" visibleRequired="1" help="1" expanded="1" />
+						<Field position="4" data="4" usage="input" label="afin de le faire fonctionner, exclusivement ou non, au moyen de l'énergie électrique, du gaz naturel véhicules (GNV), du gaz de pétrole liquéfié (GPL) ou du superéthanol E85." required="0" visibleRequired="1" help="0" expanded="1" />
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Votre véhicule
+						]]></Legend>
+						<Field position="1" data="8" usage="input" label="Type d'immatriculation" prompt=" " required="0" visibleRequired="0" colon="0" help="1" />
+						<Field position="2" data="5" usage="input" label="Genre national (J.1)" prompt="Sélectionnez le genre de votre véhicule" required="0" visibleRequired="1" colon="0" underlabel="1" help="1" />
+						<Field position="3" data="13" usage="input" label="Véhicule de démonstration ?" required="1" visibleRequired="0" colon="0" help="0" expanded="1" />
+						<Field position="4" data="27" usage="input" label="Votre véhicule est-il destiné au transport de marchandises ?" required="1" visibleRequired="0" colon="0" underlabel="1" help="0" expanded="1" />
+						<Field position="5" data="6" usage="input" label="Date de mise en circulation (B) (format : JJ/MM/AAAA) :" required="0" visibleRequired="1" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="23" usage="input" label="Puissance administrative nationale (P.6)" required="0" visibleRequired="1" colon="0" help="1" />
+						<Field position="7" data="24" usage="input" label="Véhicule de collection ?" required="0" visibleRequired="1" colon="0" help="1" expanded="1" />
+						<Field position="8" data="25" usage="input" label="Energie (P.3)" prompt=" " required="0" visibleRequired="1" colon="0" help="1" />
+						<Field position="9" data="7" usage="input" label="Carrosserie handicap / Carte d'invalidité" required="0" visibleRequired="1" colon="0" help="1" expanded="1" />
+						<Field position="10" data="12" usage="input" label="Le véhicule a fait l'objet d'une réception communautaire ?" required="0" visibleRequired="1" colon="0" help="1" expanded="1" />
+						<Field position="11" data="26" usage="input" label="Taux d'émission CO2 (V.7)" required="0" visibleRequired="1" colon="0" help="1" />
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend><![CDATA[
+Votre lieu de domicile
+						]]></Legend>
+						<Field position="1" data="28" usage="input" label="Sélectionnez votre département" prompt=" " required="0" visibleRequired="1" colon="0" underlabel="1" help="1" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="calculer" label="Calculer" what="submit" for="jumpToStep" uri="4" class="btn-primary" />
+				<Action name="effacer" label="Effacer formulaire" what="reset" for="currentStep" class="btn-default" />
+			</ActionList>
+		</Step>
+		<Step id="1" name="demarche" label="Votre démarche" template="pages:article.html.twig">
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Votre démarche
+						]]></Legend>
+						<Field position="1" data="1" usage="input" label="Indiquez la démarche pour laquelle vous effectuez cette simulation" required="1" visibleRequired="0" underlabel="1" help="0" />
+						<Field position="2" data="28" usage="input" label="Votre département de résidence" required="1" visibleRequired="0" underlabel="1" help="1" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="effacer" label="Effacer formulaire" what="reset" for="currentStep" class="btn-default" />
+				<Action name="commencer" label="Commencer" what="submit" for="nextStep" class="btn-primary" />
+			</ActionList>
+		</Step>
+		<Step id="2" name="vehicule" label="Votre véhicule" template="pages:article.html.twig">
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Votre véhicule
+						]]></Legend>
+						<Field position="1" data="28" usage="input" label="Type de véhicule" required="1" visibleRequired="0" underlabel="1" help="1">
+							<PostNote><![CDATA[
+Le certificat ou le duplicata est gratuit pour un 2 roues de moins de 50cm3.
+							]]></PostNote>
+						</Field>
+						<Field position="2" data="6" usage="input" label="Date de mise en circulation (B) (format : JJ/MM/AAAA) :" required="1" visibleRequired="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="8" usage="input" label="Type d'immatriculation" required="1" visibleRequired="0" help="1" />
+						<Field position="4" data="23" usage="input" label="Puissance administrative" required="1" visibleRequired="0" help="1">
+							<PostNote><![CDATA[
+Champ P.6 du certificat
+							]]></PostNote>
+						</Field>
+						<Field position="5" data="25" usage="input" label="Energie (P.3)" required="1" visibleRequired="0" help="1" />
+						<Field position="6" data="26" usage="input" label="Taux d'émission CO2" required="1" visibleRequired="0" help="1" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="effacer" label="Effacer formulaire" what="reset" for="currentStep" class="btn-default" />
+				<Action name="precedent" label="Précédent" what="submit" for="priorStep" class="btn-default" />
+				<Action name="calculer" label="Calculer" what="submit" for="nextStep" class="btn-primary" />
+			</ActionList>
+		</Step>
+		<Step id="3" name="complements" label="Compléments" template="pages:article.html.twig">
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="2" usage="input" label="Précisez si le véhicule a été" required="0" visibleRequired="0" underlabel="1" help="0" expanded="1" />
+						<Field position="2" data="12" usage="input" label="Le véhicule a fait l'objet d'une réception communautaire ?" required="1" visibleRequired="0" help="1" />
+						<Field position="3" data="3" usage="input" label="Cochez cette case si vous avez déjà déclaré 3 changements d'adresse pour ce véhicule et si vous voulez en déclarer un 4ème (les 3 emplacements sur la carte grise sont occupés)" required="1" visibleRequired="0" help="1">
+							<PostNote><![CDATA[
+Au 4ème changement d'adresse, un nouveau certificat doit être établi. Vous devrez restituer l'ancien certificat à la préfecture (ou à la préfecture de police de Paris).
+							]]></PostNote>
+						</Field>
+						<Field position="4" data="7" usage="input" label="Carrosserie handicap / Carte mentionnant invalidité " required="1" visibleRequired="0" help="1">
+							<PostNote><![CDATA[
+Depuis juillet 2009, le malus sur les véhicules neufs et la taxe annuelle sur les véhicules polluants ne s'applique pas sur un véhicule :
+- immatriculé voiture particulière carrosserie "handicap" ,
+- ou acquis par une personne titulaire de la carte d'invalidité ou par une personne, dont un enfant mineur ou à charge, du même foyer fiscal, est titulaire de cette carte (l'exonération ne peut concerner qu'un seul véhicule par bénéficiaire). Une photocopie de la carte d'invalidité doit être jointe à la demande de certificat d'immatriculation.
+							]]></PostNote>
+						</Field>
+						<Field position="5" data="28" usage="input" label="Département" required="0" visibleRequired="1" help="1" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="effacer" label="Effacer formulaire" what="reset" for="currentStep" class="btn-default" />
+				<Action name="precedent" label="Précédent" what="submit" for="priorStep" class="btn-default" />
+				<Action name="calculer" label="Calculer" what="submit" for="nextStep" class="btn-primary" />
+			</ActionList>
+		</Step>
+		<Step id="4" name="Résultat" label="Résultat" template="pages:article.html.twig">
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Rappel de vos informations
+						]]></Legend>
+						<Field position="1" data="1" usage="output" label="Démarche" required="0" visibleRequired="0" help="0" />
+						<Field position="2" data="2" usage="output" newline="0" required="0" visibleRequired="0" help="0" expanded="1" />
+						<Field position="3" data="3" usage="output" label="Plus de trois changements de domicile" required="0" visibleRequired="0" help="1" />
+						<Field position="4" data="4" usage="output" label="afin de le faire fonctionner, exclusivement ou non, au moyen de l'énergie électrique, du gaz naturel véhicules (GNV), du gaz de pétrole liquéfié (GPL) ou du superéthanol E85." required="0" visibleRequired="0" help="0" />
+						<Field position="5" data="5" usage="output" label="Genre national (J.1)" required="0" visibleRequired="0" help="0" />
+						<Field position="6" data="24" usage="output" label="Véhicule de collection ?" required="0" visibleRequired="0" help="0" />
+						<Field position="7" data="13" usage="output" label="Véhicule de démonstration ?" required="0" visibleRequired="0" help="0" />
+						<Field position="8" data="27" usage="output" label="Votre véhicule est destiné au transport de marchandises ?" required="0" visibleRequired="0" help="0" />
+						<Field position="9" data="6" usage="output" label="Date de mise en circulation (B)" required="0" visibleRequired="0" help="0" />
+						<Field position="10" data="23" usage="output" label="Puissance administrative nationale (P.6)" required="0" visibleRequired="0" help="0" />
+						<Field position="11" data="25" usage="output" label="Energie (P.3)" required="0" visibleRequired="0" help="0" />
+						<Field position="12" data="8" usage="output" label="Type d'immatriculation" required="0" visibleRequired="0" help="1" />
+						<Field position="13" data="7" usage="output" label="Carrosserie handicap / Carte d'invalidité ?" required="0" visibleRequired="0" help="0" />
+						<Field position="14" data="12" usage="output" label="Réception communautaire ?" required="0" visibleRequired="0" help="0" />
+						<Field position="15" data="26" usage="output" label="Taux d'émission de CO2 (V.7)" required="0" visibleRequired="0" help="0" />
+						<Field position="16" data="28" usage="output" label="Département" required="0" visibleRequired="0" help="0" />
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Coût du certificat d'immatriculation
+						]]></Legend>
+						<Field position="1" data="57" usage="output" label="Y1 - Taxe régionale" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="2" data="64" usage="output" label="Y1 bis - Taxe additionnelle voitures de forte puissance" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="3" data="58" usage="output" label="Y2 - Taxe formation professionnelle" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="4" data="66" usage="output" label="Y3 - Taxe additionnelle voitures de tourisme" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="5" data="67" usage="output" label="Y3 - Malus CO2 voitures de tourisme" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="6" data="60" usage="output" label="Y4 - Taxe de gestion" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="7" data="62" usage="output" label="Y5 - Redevance d'acheminement" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="8" data="63" usage="output" label="Y6 - Taxes à payer" required="0" visibleRequired="0" help="0" emphasize="1" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="precedent" label="Précédent" what="submit" for="priorStep" class="btn-default" />
+			</ActionList>
+			<FootNotes position="beforeActions">
+				<FootNote id="2"><![CDATA[
+Coût de votre certificat d’immatriculation : #63 €
+				]]></FootNote>
+				<FootNote id="1"><![CDATA[
+La taxe (Y3 - Malus CO2 voitures de tourisme) peut faire l'objet d'une diminution de 20g/km par enfant à charge à partir du 3e et pour 1 seul véhicule d’au moins 5 places assises par foyer. Cette réduction doit être demandée auprès du service des impôts et fait l’objet d’un remboursement.
+				]]></FootNote>
+				<FootNote id="3"><![CDATA[
+Effectuer votre <a target="_blank" rel="nofollow" href="https://immatriculation.ants.gouv.fr/ " title="demande de carte grise en ligne - Nouvelle fenêtre">demande de carte grise en ligne</a>.
+Obtenir plus d'informations sur la carte grise sur <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/N367" title="service-public.fr - Nouvelle fenêtre">service-public.fr</a>.
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="cout-certificat-immatriculation" request="select taxe, exoVehiculePropre from taxeRegionale, departements where departements.regionId = taxeRegionale.regionId and departements.codeDep = '%1$s'" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="departement" data="28" />
+		</Source>
+		<Source id="2" datasource="cout-certificat-immatriculation" request="SELECT barememotomoins125 as baremeMotoMoins125, baremeautre as baremeAutre FROM baremeDemarche WHERE id = %1$s" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="demarche" data="1" />
+		</Source>
+		<Source id="3" datasource="cout-certificat-immatriculation" request="SELECT barememoins10 as baremeMoins10, baremeplus10 as baremePlus10, taxefptransport as taxeFPTransport FROM baremeVehicule WHERE id = %1$s" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="typeVehicule" data="5" />
+		</Source>
+		<Source id="4" datasource="cout-certificat-immatriculation" request="SELECT malus FROM malusCO2 WHERE annee = %1$s and minCO2 &lt;= %2$s and maxCO2 >= %3$s" returnType="assocArray" returnPath="0/malus">
+			<Parameter type="columnValue" origin="data" name="annee" data="36" />
+			<Parameter type="columnValue" origin="data" name="minCO2" data="26" />
+			<Parameter type="columnValue" origin="data" name="maxCO2" data="26" />
+		</Source>
+		<Source id="5" datasource="cout-certificat-immatriculation" request="SELECT malus FROM malusCO2 WHERE annee = %1$s and minCO2 &lt;= %2$s * %3$s / 100 and maxCO2 >= %4$s * %5$s / 100" returnType="assocArray" returnPath="0/malus">
+			<Parameter type="columnValue" origin="data" name="annee" data="36" />
+			<Parameter type="columnValue" origin="data" name="minCO2" data="26" />
+			<Parameter type="columnValue" origin="data" name="pourcentEcotaxe1" data="33" />
+			<Parameter type="columnValue" origin="data" name="maxCO2" data="26" />
+			<Parameter type="columnValue" origin="data" name="pourcentEcotaxe2" data="33" />
+		</Source>
+		<Source id="6" datasource="cout-certificat-immatriculation" request="SELECT malus FROM malusCV WHERE annee = %1$s and minCV &lt;= %2$s and maxCV >= %3$s" returnType="assocArray" returnPath="0/malus">
+			<Parameter type="columnValue" origin="data" name="annee" data="36" />
+			<Parameter type="columnValue" origin="data" name="minCV" data="23" />
+			<Parameter type="columnValue" origin="data" name="maxCV" data="23" />
+		</Source>
+		<Source id="7" datasource="cout-certificat-immatriculation" request="SELECT maxco2 as maxCO2, taxepargramme as taxeParGramme FROM taxeAdditionnelleCO2 WHERE annee = %1$s and tranche = 1" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="annee" data="35" />
+		</Source>
+		<Source id="8" datasource="cout-certificat-immatriculation" request="SELECT maxco2 as maxCO2, taxepargramme as taxeParGramme FROM taxeAdditionnelleCO2 WHERE annee = %1$s and tranche = 2" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="annee" data="35" />
+		</Source>
+		<Source id="9" datasource="cout-certificat-immatriculation" request="SELECT maxco2 as maxCO2, taxepargramme as taxeParGramme FROM taxeAdditionnelleCO2 WHERE annee = %1$s and tranche = 3" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="annee" data="35" />
+		</Source>
+		<Source id="10" datasource="cout-certificat-immatriculation" request="SELECT taxe FROM taxeAdditionnelleCV WHERE annee = %1$s and minCV &lt;= %2$s and maxCV >= %3$s" returnType="assocArray" returnPath="0/taxe">
+			<Parameter type="columnValue" origin="data" name="annee" data="35" />
+			<Parameter type="columnValue" origin="data" name="minCV" data="23" />
+			<Parameter type="columnValue" origin="data" name="maxCV" data="23" />
+		</Source>
+		<Source id="11" datasource="cout-certificat-immatriculation" request="SELECT id, demarche FROM baremeDemarche WHERE id &lt;= 18 ORDER BY id" returnType="assocArray" />
+		<Source id="12" datasource="cout-certificat-immatriculation" request="SELECT id, demarche FROM baremeDemarche WHERE id > 4 and id &lt;= 18 ORDER BY id" returnType="assocArray" />
+		<Source id="13" datasource="cout-certificat-immatriculation" request="SELECT id, typevehicule as typeVehicule FROM baremeVehicule ORDER BY id" returnType="assocArray" />
+		<Source id="14" datasource="cout-certificat-immatriculation" request="SELECT id, energie FROM energies ORDER BY id" returnType="assocArray" />
+		<Source id="15" datasource="cout-certificat-immatriculation" request="SELECT pourcentmalusco2 as pourcentMalusCO2, pourcenttaxeadditionnelle as pourcentTaxeAdditionnelle, energiepropre as energiePropre FROM energies WHERE id = %1$s" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="id" data="25" />
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Conditions d'affichage du champ 'Précisez si le véhicule a été :">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 1">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Condition operand="demarche" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="1" field="2" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="1" field="2" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Conditions d'affichage du champ 'Cochez cette case si vous avez déjà déclaré 3 changements d'adresse pour ce véhicule et si vous voulez en déclarer un 4ème (les 3 emplacements sur la carte grise sont occupés)'">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 5">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Condition operand="demarche" operator="=" expression="5" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="1" field="3" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="1" field="3" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Conditions d'affichage du champ 'afin de fonctionner, exclusivement ou non, au moyen de l'énergie électrique, du gaz naturel véhicules (GNV), du gaz de pétrole liquéfié (GPL) ou du superéthanol E85.'">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 10">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Condition operand="demarche" operator="=" expression="10" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="1" field="4" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="4" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="1" field="4" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Conditions d'affichage du fieldset 'Votre véhicule'">
+			<Conditions value="defined(#1) &amp;&amp; ((#1 = 1 &amp;&amp; defined(#2)) || #1 = 2 || #1 = 3 || #1 = 4 || (#1 = 5 &amp;&amp; defined(#3)) || #1 = 6 || #1 = 8 || #1 = 9 || #1 = 10 || #1 = 11 || #1 = 12 || #1 = 13 || #1 = 15 || #1 = 16 || #1 = 17 || #1 = 18)">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="franceOuImport" operator="present" />
+						</Connector>
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="3" />
+						<Condition operand="demarche" operator="=" expression="4" />
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="5" />
+							<Condition operand="quatriemeChangementDomicile" operator="present" />
+						</Connector>
+						<Condition operand="demarche" operator="=" expression="6" />
+						<Condition operand="demarche" operator="=" expression="8" />
+						<Condition operand="demarche" operator="=" expression="9" />
+						<Condition operand="demarche" operator="=" expression="10" />
+						<Condition operand="demarche" operator="=" expression="11" />
+						<Condition operand="demarche" operator="=" expression="12" />
+						<Condition operand="demarche" operator="=" expression="13" />
+						<Condition operand="demarche" operator="=" expression="15" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="0" panel="1" fieldset="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="0" panel="1" fieldset="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Conditions d'affichage du fieldset 'Votre lieu de domicile'">
+			<Conditions value="defined(#1) &amp;&amp; ((defined(#5) &amp;&amp; ((#1 = 1 &amp;&amp; #5 != 10 &amp;&amp; (!defined(#13) || #13 = 2)) || ((#1 = 2 || #1 = 3 || #1 = 10 || #1 = 11 || #1 = 12 || #1 = 13 || #1 = 15 || #1 = 16 || #1 = 17 || #1 = 18) &amp;&amp; #5 != 10))) || #1 = 14)">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="typeVehicule" operator="present" />
+							<Connector type="any">
+								<Connector type="all">
+									<Condition operand="demarche" operator="=" expression="1" />
+									<Condition operand="typeVehicule" operator="!=" expression="10" />
+									<Connector type="any">
+										<Condition operand="declareVehiculeDemonstration" operator="blank" />
+										<Condition operand="declareVehiculeDemonstration" operator="=" expression="2" />
+									</Connector>
+								</Connector>
+								<Connector type="all">
+									<Connector type="any">
+										<Condition operand="demarche" operator="=" expression="2" />
+										<Condition operand="demarche" operator="=" expression="3" />
+										<Condition operand="demarche" operator="=" expression="10" />
+										<Condition operand="demarche" operator="=" expression="11" />
+										<Condition operand="demarche" operator="=" expression="12" />
+										<Condition operand="demarche" operator="=" expression="13" />
+										<Condition operand="demarche" operator="=" expression="15" />
+										<Condition operand="demarche" operator="=" expression="16" />
+										<Condition operand="demarche" operator="=" expression="17" />
+										<Condition operand="demarche" operator="=" expression="18" />
+									</Connector>
+									<Condition operand="typeVehicule" operator="!=" expression="10" />
+								</Connector>
+							</Connector>
+						</Connector>
+						<Condition operand="demarche" operator="=" expression="14" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="0" panel="1" fieldset="3" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="16" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="0" panel="1" fieldset="3" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="16" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Conditions d'affichage du champ 'Genre national (J.1)'">
+			<Conditions value="defined(#1) &amp;&amp; (#1 = 1 || #1 = 2 || #1 = 3 || #1 = 4 || (#1 = 5 &amp;&amp; defined(#3) &amp;&amp; #3 = 1) || #1 = 6 || #1 = 8 || #1 = 9 || #1 = 10 || #1 = 11 || #1 = 12 || #1 = 13 || #1 = 15 || #1 = 16 || #1 = 17 || #1 = 18)">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="3" />
+						<Condition operand="demarche" operator="=" expression="4" />
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="5" />
+							<Condition operand="quatriemeChangementDomicile" operator="present" />
+							<Condition operand="quatriemeChangementDomicile" operator="=" expression="1" />
+						</Connector>
+						<Condition operand="demarche" operator="=" expression="6" />
+						<Condition operand="demarche" operator="=" expression="8" />
+						<Condition operand="demarche" operator="=" expression="9" />
+						<Condition operand="demarche" operator="=" expression="10" />
+						<Condition operand="demarche" operator="=" expression="11" />
+						<Condition operand="demarche" operator="=" expression="12" />
+						<Condition operand="demarche" operator="=" expression="13" />
+						<Condition operand="demarche" operator="=" expression="15" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="2" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="5" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="2" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Conditions d'affichage du champ 'Véhicule de démonstration ?'">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 1 &amp;&amp; defined(#5) &amp;&amp; (#5 = 1 || #5 = 2 || #5 = 3 || #5 = 7 || #5 = 8 || #5 = 9) &amp;&amp; defined(#2) &amp;&amp; #2 != 2">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Condition operand="typeVehicule" operator="present" />
+					<Connector type="any">
+						<Condition operand="typeVehicule" operator="=" expression="1" />
+						<Condition operand="typeVehicule" operator="=" expression="2" />
+						<Condition operand="typeVehicule" operator="=" expression="3" />
+						<Condition operand="typeVehicule" operator="=" expression="7" />
+						<Condition operand="typeVehicule" operator="=" expression="8" />
+						<Condition operand="typeVehicule" operator="=" expression="9" />
+					</Connector>
+					<Condition operand="franceOuImport" operator="present" />
+					<Condition operand="franceOuImport" operator="!=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="3" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="7" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="3" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="7" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Conditions d'affichage du champ 'Votre véhicule est-il destinée au transport de marchandises ?'">
+			<Conditions value="(#1 = 20 || #1 = 21) &amp;&amp; #5 != 10">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="20" />
+						<Condition operand="demarche" operator="=" expression="21" />
+					</Connector>
+					<Condition operand="typeVehicule" operator="!=" expression="10" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="4" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="8" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="4" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="8" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Conditions d'affichage du champ 'Date de mise en circulation (B)'">
+			<Conditions value="defined(#5) &amp;&amp; ((#1 = 1 &amp;&amp; #2 = 2 &amp;&amp; #5 = 1) || ((#1 = 2 || #1 = 3 || #1 = 16 || #1 = 17 || #1 = 18) &amp;&amp; #5 != 10 &amp;&amp; #5 != 17 &amp;&amp; #5 != 18 &amp;&amp; #5 != 23))">
+				<Connector type="all">
+					<Condition operand="typeVehicule" operator="present" />
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+							<Condition operand="typeVehicule" operator="=" expression="1" />
+						</Connector>
+						<Connector type="all">
+							<Connector type="any">
+								<Condition operand="demarche" operator="=" expression="2" />
+								<Condition operand="demarche" operator="=" expression="3" />
+								<Condition operand="demarche" operator="=" expression="16" />
+								<Condition operand="demarche" operator="=" expression="17" />
+								<Condition operand="demarche" operator="=" expression="18" />
+							</Connector>
+							<Condition operand="typeVehicule" operator="!=" expression="10" />
+							<Condition operand="typeVehicule" operator="!=" expression="17" />
+							<Condition operand="typeVehicule" operator="!=" expression="18" />
+							<Condition operand="typeVehicule" operator="!=" expression="23" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="5" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="9" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="5" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="9" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Conditions d'affichage du champ 'Type d'immatriculation'">
+			<Conditions value="#1 = 5 &amp;&amp; defined(#3) &amp;&amp; #3 = 2">
+				<Connector type="all">
+					<Condition operand="demarche" operator="=" expression="5" />
+					<Condition operand="quatriemeChangementDomicile" operator="present" />
+					<Condition operand="quatriemeChangementDomicile" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="1" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="12" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="1" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="12" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Conditions d'affichage du champ 'Puissance administrative nationale (P.6)'">
+			<Conditions value="defined(#5) &amp;&amp; #5 != 10 &amp;&amp; #5 != 17 &amp;&amp; #5 != 18 &amp;&amp; (#1 = 1 || #1 = 2 || #1 = 3 || #1 = 16 || #1 = 17 || #1 = 18) &amp;&amp; #5 != 23">
+				<Connector type="all">
+					<Condition operand="typeVehicule" operator="present" />
+					<Condition operand="typeVehicule" operator="!=" expression="10" />
+					<Condition operand="typeVehicule" operator="!=" expression="17" />
+					<Condition operand="typeVehicule" operator="!=" expression="18" />
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="3" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+					</Connector>
+					<Condition operand="typeVehicule" operator="!=" expression="23" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="6" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="10" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="6" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="10" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Mise à 1 de la  'Puissance administrative nationale (P.6)' pour certaines démarches où la taxe régionale est une taxe fixe indépendante de la puisance">
+			<Conditions value="((#1 = 1 || #1 = 2 || #1 = 3 || #1 = 16 || #1 = 17 || #1 = 18) &amp;&amp; (#5 = 17 || #5 = 18 || #5 = 23)) || #1 = 10 || #1 = 11 || #1 = 12 || #1 = 13 || #1 = 14 || #1 = 15">
+				<Connector type="any">
+					<Connector type="all">
+						<Connector type="any">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="demarche" operator="=" expression="2" />
+							<Condition operand="demarche" operator="=" expression="3" />
+							<Condition operand="demarche" operator="=" expression="16" />
+							<Condition operand="demarche" operator="=" expression="17" />
+							<Condition operand="demarche" operator="=" expression="18" />
+						</Connector>
+						<Connector type="any">
+							<Condition operand="typeVehicule" operator="=" expression="17" />
+							<Condition operand="typeVehicule" operator="=" expression="18" />
+							<Condition operand="typeVehicule" operator="=" expression="23" />
+						</Connector>
+					</Connector>
+					<Condition operand="demarche" operator="=" expression="10" />
+					<Condition operand="demarche" operator="=" expression="11" />
+					<Condition operand="demarche" operator="=" expression="12" />
+					<Condition operand="demarche" operator="=" expression="13" />
+					<Condition operand="demarche" operator="=" expression="14" />
+					<Condition operand="demarche" operator="=" expression="15" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="23" value="1" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="Conditions d'affichage du champ 'Véhicule de collection ?'">
+			<Conditions value="((#1 = 1 &amp;&amp; #2 = 2) || #1 = 2 || #1 = 16 || #1 = 17 || #1 = 18) &amp;&amp; defined(#5) &amp;&amp; (#5 = 2 || #5 = 11 || #5 = 12 || #5 = 13 || #5 = 14 || #5 = 15 || #5 = 16 || (#5 = 1 &amp;&amp; defined(#23) &amp;&amp; #23 >= 36))">
+				<Connector type="all">
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+						</Connector>
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+					</Connector>
+					<Condition operand="typeVehicule" operator="present" />
+					<Connector type="any">
+						<Condition operand="typeVehicule" operator="=" expression="2" />
+						<Condition operand="typeVehicule" operator="=" expression="11" />
+						<Condition operand="typeVehicule" operator="=" expression="12" />
+						<Condition operand="typeVehicule" operator="=" expression="13" />
+						<Condition operand="typeVehicule" operator="=" expression="14" />
+						<Condition operand="typeVehicule" operator="=" expression="15" />
+						<Condition operand="typeVehicule" operator="=" expression="16" />
+						<Connector type="all">
+							<Condition operand="typeVehicule" operator="=" expression="1" />
+							<Condition operand="puissanceAdministrative" operator="present" />
+							<Condition operand="puissanceAdministrative" operator=">=" expression="36" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="7" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="6" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="7" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="6" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="Conditions d'affichage du champ 'Carrosserie handicap / Carte d'invalidité'">
+			<Conditions value="defined(#5) &amp;&amp; #5 = 1 &amp;&amp; (#1 = 2 || #1 = 16 || #1 = 17 || #1 = 18 || #1 = 1) &amp;&amp; defined(#1)">
+				<Connector type="all">
+					<Condition operand="typeVehicule" operator="present" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+						<Condition operand="demarche" operator="=" expression="1" />
+					</Connector>
+					<Condition operand="demarche" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="9" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="13" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="9" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="13" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Conditions d'affichage du champ 'Le véhicule a fait l'objet d'une réception communautaire ?'">
+			<Conditions value="defined(#5) &amp;&amp; #5 = 1 &amp;&amp; (!defined(#7) || #7 = 2) &amp;&amp; defined(#1) &amp;&amp; #1 = 1 &amp;&amp; (#2 = 1 || (#2 = 2 &amp;&amp; defined(#6) &amp;&amp; #6 > 01/01/2008))">
+				<Connector type="all">
+					<Condition operand="typeVehicule" operator="present" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Connector type="any">
+						<Condition operand="invalidite" operator="blank" />
+						<Condition operand="invalidite" operator="=" expression="2" />
+					</Connector>
+					<Condition operand="demarche" operator="present" />
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Connector type="any">
+						<Condition operand="franceOuImport" operator="=" expression="1" />
+						<Connector type="all">
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+							<Condition operand="dateMiseEnCirculation" operator="present" />
+							<Condition operand="dateMiseEnCirculation" operator=">" expression="01/01/2008" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="10" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="14" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="10" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="14" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Conditions d'affichage du champ 'Energie (P.3)'">
+			<Conditions value="defined(#5) &amp;&amp; #5 != 10 &amp;&amp; #5 != 18 &amp;&amp; (#1 = 1 || #1 = 2 || #1 = 3 || #1 = 16 || #1 = 17 || #1 = 18) &amp;&amp; #5 != 23">
+				<Connector type="all">
+					<Condition operand="typeVehicule" operator="present" />
+					<Condition operand="typeVehicule" operator="!=" expression="10" />
+					<Condition operand="typeVehicule" operator="!=" expression="18" />
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="3" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+					</Connector>
+					<Condition operand="typeVehicule" operator="!=" expression="23" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="8" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="11" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="8" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="11" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Conditions d'affichage du champ 'Taux d'émission CO2 (V.7)'">
+			<Conditions value="defined(#5) &amp;&amp; #5 = 1 &amp;&amp; (!defined(#7) || #7 = 2) &amp;&amp; #12 = 1 &amp;&amp; defined(#1) &amp;&amp; #1 = 1 &amp;&amp; (#2 = 1 || (#2 = 2 &amp;&amp; defined(#6) &amp;&amp; #6 > 31/12/2007))">
+				<Connector type="all">
+					<Condition operand="typeVehicule" operator="present" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Connector type="any">
+						<Condition operand="invalidite" operator="blank" />
+						<Condition operand="invalidite" operator="=" expression="2" />
+					</Connector>
+					<Condition operand="receptionCommunautaire" operator="=" expression="1" />
+					<Condition operand="demarche" operator="present" />
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Connector type="any">
+						<Condition operand="franceOuImport" operator="=" expression="1" />
+						<Connector type="all">
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+							<Condition operand="dateMiseEnCirculation" operator="present" />
+							<Condition operand="dateMiseEnCirculation" operator=">" expression="31/12/2007" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="11" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="15" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="11" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="15" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Détermination de l'année de référence de calcul du malus. Pour les véhicules importés , il s'agit de l'année de première mise en circulation">
+			<Conditions value="#1 = 1 &amp;&amp; #2 = 2 &amp;&amp; defined(#6) &amp;&amp; #6 >= 01/01/2008">
+				<Connector type="all">
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Condition operand="franceOuImport" operator="=" expression="2" />
+					<Condition operand="dateMiseEnCirculation" operator="present" />
+					<Condition operand="dateMiseEnCirculation" operator=">=" expression="01/01/2008" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="year(#6)" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="year(now)" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Détermination de la valeur par défaut de 'type d'immatriculation'. Les véhicules immatriculés avant le 15/04/2009 sont de type FNI sinon ils sont de type SIV">
+			<Conditions value="#6 &lt; 15/04/2009">
+				<Condition operand="dateMiseEnCirculation" operator="&lt;" expression="15/04/2009" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="default" data="8" value="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="default" data="8" value="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Détermination de la valeur de 'neuf ou moins de 10 ans'">
+			<Conditions value="#6 > now - 3652">
+				<Condition operand="dateMiseEnCirculation" operator=">" expression="now - 3652" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="9" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="9" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Détermination de la valeur de 'mois entamés depuis première immatriculation'">
+			<Conditions value="defined(#6)">
+				<Condition operand="dateMiseEnCirculation" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="10" value="(year(now) - year(#6)) * 12 + month(now) - month(#6)" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Détermination de la valeur de 'années entamées depuis première immatriculation'">
+			<Conditions value="#14 = month(now) &amp;&amp; #15 &lt; day(now)">
+				<Connector type="all">
+					<Condition operand="moisDateMiseEnCirculation" operator="=" expression="month(now)" />
+					<Condition operand="jourDateMiseEnCirculation" operator="&lt;" expression="day(now)" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="11" value="ceil((#10 + 1) / 12)" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="11" value="ceil(#10 / 12)" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="Détermination de la valeur de 'bareme démarche'. Le barème est différent pour les motos de moins de 125 cm3">
+			<Conditions value="defined(#5) &amp;&amp; #5 = 5">
+				<Connector type="all">
+					<Condition operand="typeVehicule" operator="present" />
+					<Condition operand="typeVehicule" operator="=" expression="5" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="18" value="#16" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="18" value="#17" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="Détermination de la valeur de 'bareme véhicule'. Le barème en fonction du véhicule est différent pour les véhicules de plus de 10 ans">
+			<Conditions value="!#9 &amp;&amp; ((#1 = 1 &amp;&amp; defined(#2) &amp;&amp; #2 = 2) || #1 = 2 || #1 = 3 || #1 = 16 || #1 = 17 || #1 = 18)">
+				<Connector type="all">
+					<Condition operand="neufOuMoinsDe10" operator="isFalse" />
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="franceOuImport" operator="present" />
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+						</Connector>
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="3" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="21" value="#20" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="21" value="#19" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="Détermination de la valeur de 'affecté au transport marchandises'">
+			<Conditions value="defined(#1) &amp;&amp; (#1 = 20 || #1 = 21) &amp;&amp; defined(#5) &amp;&amp; (#5 = 2 || #5 = 3 || #5 = 4 || #5 = 11 || #5 = 12 || #5 = 13 || #5 = 18) &amp;&amp; defined(#27) &amp;&amp; #27 = 1">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="20" />
+						<Condition operand="demarche" operator="=" expression="21" />
+					</Connector>
+					<Condition operand="typeVehicule" operator="present" />
+					<Connector type="any">
+						<Condition operand="typeVehicule" operator="=" expression="2" />
+						<Condition operand="typeVehicule" operator="=" expression="3" />
+						<Condition operand="typeVehicule" operator="=" expression="4" />
+						<Condition operand="typeVehicule" operator="=" expression="11" />
+						<Condition operand="typeVehicule" operator="=" expression="12" />
+						<Condition operand="typeVehicule" operator="=" expression="13" />
+						<Condition operand="typeVehicule" operator="=" expression="18" />
+					</Connector>
+					<Condition operand="transportMarchandises" operator="present" />
+					<Condition operand="transportMarchandises" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="31" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="31" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="Détermination de la valeur de 'véhicule de collection'">
+			<Conditions value="((#1 = 1 &amp;&amp; #2 = 2) || #1 = 2 || #1 = 16 || #1 = 17 || #1 = 18) &amp;&amp; defined(#5) &amp;&amp; (#5 = 2 || #5 = 11 || #5 = 12 || #5 = 13 || #5 = 14 || #5 = 15 || #5 = 16) &amp;&amp; defined(#24) &amp;&amp; #24 = 1">
+				<Connector type="all">
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+						</Connector>
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+					</Connector>
+					<Condition operand="typeVehicule" operator="present" />
+					<Connector type="any">
+						<Condition operand="typeVehicule" operator="=" expression="2" />
+						<Condition operand="typeVehicule" operator="=" expression="11" />
+						<Condition operand="typeVehicule" operator="=" expression="12" />
+						<Condition operand="typeVehicule" operator="=" expression="13" />
+						<Condition operand="typeVehicule" operator="=" expression="14" />
+						<Condition operand="typeVehicule" operator="=" expression="15" />
+						<Condition operand="typeVehicule" operator="=" expression="16" />
+					</Connector>
+					<Condition operand="declareVehiculeDeCollection" operator="present" />
+					<Condition operand="declareVehiculeDeCollection" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Détermination de la valeur finale de 'malus' (ecotaxe)">
+			<Conditions value="#1 = 1 &amp;&amp; #5 = 1 &amp;&amp; #12 = 1">
+				<Connector type="all">
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Condition operand="receptionCommunautaire" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="#38" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Détermination de la valeur finale de 'malus réduit' (ecotaxe)">
+			<Conditions value="#1 = 1 &amp;&amp; #5 = 1 &amp;&amp; #12 = 1 &amp;&amp; defined(#26) &amp;&amp; #26 > #47">
+				<Connector type="all">
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Condition operand="receptionCommunautaire" operator="=" expression="1" />
+					<Condition operand="tauxCO2" operator="present" />
+					<Condition operand="tauxCO2" operator=">" expression="#47" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="#37" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="Détermination de la valeur finale de 'malus' (ecotaxe)">
+			<Conditions value="#1 = 1 &amp;&amp; #5 = 1 &amp;&amp; #12 = 2">
+				<Connector type="all">
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Condition operand="receptionCommunautaire" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="#39" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="Détermination de la valeur finale de 'malus' (ecotaxe) Pas de malus s'il ne s'agit pas de la 1ere Immatriculation d'une voiture particulière">
+			<Conditions value="#1 != 1 || #5 != 1 || (#1 = 1 &amp;&amp; #2 = 2 &amp;&amp; #6 &lt; 01/01/2008)">
+				<Connector type="any">
+					<Condition operand="demarche" operator="!=" expression="1" />
+					<Condition operand="typeVehicule" operator="!=" expression="1" />
+					<Connector type="all">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Condition operand="franceOuImport" operator="=" expression="2" />
+						<Condition operand="dateMiseEnCirculation" operator="&lt;" expression="01/01/2008" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="Détermination de la valeur finale de 'malus réduit' (ecotaxe)">
+			<Conditions value="#1 = 1 &amp;&amp; #2 = 2">
+				<Connector type="all">
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Condition operand="franceOuImport" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="41" value="max(0, #40 * (1 - #11 * 0.1))" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="41" value="#40" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="R32" label="Détermination de la valeur de 'Taxe additionnelle' (taxe CO2)">
+			<Conditions value="(#1 = 2 || #1 = 16 || #1 = 17 || #1 = 18 || (#1 = 1 &amp;&amp; #2 = 2 &amp;&amp; #6 &lt; 01/01/2008)) &amp;&amp; #5 = 1 &amp;&amp; #6 >= 01/06/2004">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+							<Condition operand="dateMiseEnCirculation" operator="&lt;" expression="01/01/2008" />
+						</Connector>
+					</Connector>
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Condition operand="dateMiseEnCirculation" operator=">=" expression="01/06/2004" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="#52" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="33" name="R33" label="Exonération de la valeur de 'Taxe additionnelle' (taxe CO2)">
+			<Conditions value="(#1 != 2 &amp;&amp; #1 != 16 &amp;&amp; #1 != 17 &amp;&amp; #1 != 18 &amp;&amp; (#1 != 1 || #2 != 2)) || #5 != 1 || #6 &lt; 01/06/2004 || (#1 = 1 &amp;&amp; #6 >= 01/01/2008)">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="demarche" operator="!=" expression="2" />
+						<Condition operand="demarche" operator="!=" expression="16" />
+						<Condition operand="demarche" operator="!=" expression="17" />
+						<Condition operand="demarche" operator="!=" expression="18" />
+						<Connector type="any">
+							<Condition operand="demarche" operator="!=" expression="1" />
+							<Condition operand="franceOuImport" operator="!=" expression="2" />
+						</Connector>
+					</Connector>
+					<Condition operand="typeVehicule" operator="!=" expression="1" />
+					<Condition operand="dateMiseEnCirculation" operator="&lt;" expression="01/06/2004" />
+					<Connector type="all">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Condition operand="dateMiseEnCirculation" operator=">=" expression="01/01/2008" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="34" name="R34" label="Détermination de la valeur de 'Taxe additionnelle' (taxe CO2)">
+			<Conditions value="(#1 = 2 || #1 = 16 || #1 = 17 || #1 = 18 || (#1 = 1 &amp;&amp; #2 = 2)) &amp;&amp; #5 = 1 &amp;&amp; #6 >= 01/06/2004">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+						</Connector>
+					</Connector>
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Condition operand="dateMiseEnCirculation" operator=">=" expression="01/06/2004" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="54" value="#53 * #34 / 100" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="54" value="#53" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="35" name="R35" label="Détermination de la valeur de 'Taxe régionale avant exonération'">
+			<Conditions value="((#1 = 10 || #1 = 11 || #1 = 12 || #1 = 13 || #1 = 15) &amp;&amp; #5 != 10) || #1 = 14">
+				<Connector type="any">
+					<Connector type="all">
+						<Connector type="any">
+							<Condition operand="demarche" operator="=" expression="10" />
+							<Condition operand="demarche" operator="=" expression="11" />
+							<Condition operand="demarche" operator="=" expression="12" />
+							<Condition operand="demarche" operator="=" expression="13" />
+							<Condition operand="demarche" operator="=" expression="15" />
+						</Connector>
+						<Condition operand="typeVehicule" operator="!=" expression="10" />
+					</Connector>
+					<Condition operand="demarche" operator="=" expression="14" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="55" value="#29 * #18" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="36" name="R36" label="Détermination de la valeur de 'Taxe régionale avant exonération'">
+			<Conditions value="#5 = 10 || #1 = 4 || #1 = 5 || #1 = 6 || #1 = 7 || #1 = 8 || #1 = 9 || (#1 = 1 &amp;&amp; #13 = 1)">
+				<Connector type="any">
+					<Condition operand="typeVehicule" operator="=" expression="10" />
+					<Condition operand="demarche" operator="=" expression="4" />
+					<Condition operand="demarche" operator="=" expression="5" />
+					<Condition operand="demarche" operator="=" expression="6" />
+					<Condition operand="demarche" operator="=" expression="7" />
+					<Condition operand="demarche" operator="=" expression="8" />
+					<Condition operand="demarche" operator="=" expression="9" />
+					<Connector type="all">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Condition operand="declareVehiculeDemonstration" operator="=" expression="1" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="55" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="37" name="R37" label="Détermination de la valeur de 'Taxe régionale avant exonération'">
+			<Conditions value="(#1 = 1 &amp;&amp; #13 != 1) || #1 = 2 || #1 = 3 || #1 = 16 || #1 = 17 || #1 = 18">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Condition operand="declareVehiculeDemonstration" operator="!=" expression="1" />
+					</Connector>
+					<Condition operand="demarche" operator="=" expression="2" />
+					<Condition operand="demarche" operator="=" expression="3" />
+					<Condition operand="demarche" operator="=" expression="16" />
+					<Condition operand="demarche" operator="=" expression="17" />
+					<Condition operand="demarche" operator="=" expression="18" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="55" value="#29 * #21 * #23" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="38" name="R38" label="Détermination de la valeur finale de 'Y1 - Taxe régionale' : Cas énergie propre">
+			<Conditions value="(defined(#42) &amp;&amp; #42 = 1) || (#1 = 10 &amp;&amp; defined(#4) &amp;&amp; #4 = 1)">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="energiePropre" operator="present" />
+						<Condition operand="energiePropre" operator="=" expression="1" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="demarche" operator="=" expression="10" />
+						<Condition operand="modificationEnergiePropre" operator="present" />
+						<Condition operand="modificationEnergiePropre" operator="=" expression="1" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="#55 * (100 - #30) / 100" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="#55" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="39" name="R39" label="Détermination de la valeur finale de 'Y1 - Taxe régionale' : on vérifie que le duplicata SIV est moins chère que le primata">
+			<Conditions value="#1 = 3 &amp;&amp; #56 > #29 * #18">
+				<Connector type="all">
+					<Condition operand="demarche" operator="=" expression="3" />
+					<Condition operand="taxeRegionaleY1Proportionnelle" operator=">" expression="#29 * #18" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="57" value="round(#29 * #18)" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="57" value="round(#56)" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="40" name="R40" label="Détermination de la valeur finale de 'Y2- Taxe formation profesionnelle'">
+			<Conditions value="(#1 = 1 || #1 = 2 || #1 = 16 || #1 = 17 || #1 = 18) &amp;&amp; #24 = 2">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+					</Connector>
+					<Condition operand="declareVehiculeDeCollection" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="round(#22)" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="0" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="41" name="R41" label="Détermination de la valeur finale de 'Y3 - Taxe additionnelle CV">
+			<Conditions value="#7 = 1">
+				<Condition operand="invalidite" operator="=" expression="1" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="66" value="0" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="66" value="round(#65)" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="42" name="R42" label="Détermination de la valeur finale de 'Y4 - Taxe de gestion'">
+			<Conditions value="#57 > 0 &amp;&amp; ((defined(#42) &amp;&amp; #42 = 1) || (#1 = 10 &amp;&amp; defined(#4) &amp;&amp; #4 = 1))">
+				<Connector type="all">
+					<Condition operand="taxeRegionaleY1" operator=">" expression="0" />
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="energiePropre" operator="present" />
+							<Condition operand="energiePropre" operator="=" expression="1" />
+						</Connector>
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="10" />
+							<Condition operand="modificationEnergiePropre" operator="present" />
+							<Condition operand="modificationEnergiePropre" operator="=" expression="1" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="round(4 * (100 - #30) / 100)" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="43" name="R43" label="Détermination de la valeur finale de 'Y4 - Taxe de gestion'">
+			<Conditions value="#57 > 0 &amp;&amp; ((!defined(#42) || #42 = 0) &amp;&amp; (#1 != 10 || !defined(#4) || #4 = 2))">
+				<Connector type="all">
+					<Condition operand="taxeRegionaleY1" operator=">" expression="0" />
+					<Connector type="all">
+						<Connector type="any">
+							<Condition operand="energiePropre" operator="blank" />
+							<Condition operand="energiePropre" operator="=" expression="0" />
+						</Connector>
+						<Connector type="any">
+							<Condition operand="demarche" operator="!=" expression="10" />
+							<Condition operand="modificationEnergiePropre" operator="blank" />
+							<Condition operand="modificationEnergiePropre" operator="=" expression="2" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="4" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="44" name="R44" label="Détermination de 'Y4 - Taxe de gestion'">
+			<Conditions value="#57 = 0">
+				<Condition operand="taxeRegionaleY1" operator="=" expression="0" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="45" name="R45" label="Détermination de 'Sous-total'">
+			<Conditions value="defined(#57) &amp;&amp; defined(#58) &amp;&amp; defined(#66) &amp;&amp; defined(#60) &amp;&amp; defined(#64) &amp;&amp; defined(#67)">
+				<Connector type="all">
+					<Condition operand="taxeRegionaleY1" operator="present" />
+					<Condition operand="taxeFormationProfessionnelleY2" operator="present" />
+					<Condition operand="Y3_taxe" operator="present" />
+					<Condition operand="taxeGestionY4" operator="present" />
+					<Condition operand="taxeAdditionnelleFortePuissance" operator="present" />
+					<Condition operand="Y3_Malus" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="round(#57 + #58 + #66 + #67 + #64)" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="46" name="R46" label="Détermination de 'Y5 - Redevance acheminement'">
+			<Conditions value="#1 = 7 || (#1 = 5 &amp;&amp; #3 = 2 &amp;&amp; #8 = 2) || (defined(#5) &amp;&amp; #5 = 10)">
+				<Connector type="any">
+					<Condition operand="demarche" operator="=" expression="7" />
+					<Connector type="all">
+						<Condition operand="demarche" operator="=" expression="5" />
+						<Condition operand="quatriemeChangementDomicile" operator="=" expression="2" />
+						<Condition operand="typeImmatriculation" operator="=" expression="2" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="typeVehicule" operator="present" />
+						<Condition operand="typeVehicule" operator="=" expression="10" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="62" value="0" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="62" value="2.76" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="47" name="R47" label="Détermination de 'Y6 - Taxes à payer'">
+			<Conditions value="defined(#61) &amp;&amp; defined(#62)">
+				<Connector type="all">
+					<Condition operand="sousTotal" operator="present" />
+					<Condition operand="redevanceAcheminementY5" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="#61 + #62 + #60" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="0" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="48" name="R48" label="Conditions d'affichage de la note de bas de page 1">
+			<Conditions value="#1 = 1 &amp;&amp; #5 = 1 &amp;&amp; #12 = 1 &amp;&amp; defined(#38) &amp;&amp; #38 > 0">
+				<Connector type="all">
+					<Condition operand="demarche" operator="=" expression="1" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+					<Condition operand="receptionCommunautaire" operator="=" expression="1" />
+					<Condition operand="malusCO2Reduit" operator="present" />
+					<Condition operand="malusCO2Reduit" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="footnote" step="4" footnote="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="footnote" step="4" footnote="1" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="49" name="R49" label="Détermination de la taxe additionnelle de forte puissance cas exonération">
+			<Conditions value="!defined(#1) || #24 = 1 || !defined(#23) || #23 &lt;= 35 || (defined(#1) &amp;&amp; (#1 != 1 &amp;&amp; #1 != 2)) || (#1 = 2) || (defined(#5) &amp;&amp; #5 != 1) || !defined(#5)">
+				<Connector type="any">
+					<Condition operand="demarche" operator="blank" />
+					<Condition operand="declareVehiculeDeCollection" operator="=" expression="1" />
+					<Condition operand="puissanceAdministrative" operator="blank" />
+					<Condition operand="puissanceAdministrative" operator="&lt;=" expression="35" />
+					<Connector type="all">
+						<Condition operand="demarche" operator="present" />
+						<Connector type="all">
+							<Condition operand="demarche" operator="!=" expression="1" />
+							<Condition operand="demarche" operator="!=" expression="2" />
+						</Connector>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="demarche" operator="=" expression="2" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="typeVehicule" operator="present" />
+						<Condition operand="typeVehicule" operator="!=" expression="1" />
+					</Connector>
+					<Condition operand="typeVehicule" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="50" name="R50" label="Détermination de la taxe additionnelle cas entre 36 et 51 CV">
+			<Conditions value="defined(#1) &amp;&amp; (#1 = 1 || (#1 = 2)) &amp;&amp; #24 = 2 &amp;&amp; defined(#23) &amp;&amp; #23 >= 35 &amp;&amp; #23 &lt;= 51 &amp;&amp; defined(#5) &amp;&amp; #5 = 1">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="2" />
+						</Connector>
+					</Connector>
+					<Condition operand="declareVehiculeDeCollection" operator="=" expression="2" />
+					<Condition operand="puissanceAdministrative" operator="present" />
+					<Condition operand="puissanceAdministrative" operator=">=" expression="35" />
+					<Condition operand="puissanceAdministrative" operator="&lt;=" expression="51" />
+					<Condition operand="typeVehicule" operator="present" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="(500 * (#23 - 35))" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="51" name="R51" label="Détermination de la taxe additionnelle forte puissance cas 52CV et plus">
+			<Conditions value="defined(#1) &amp;&amp; (#1 = 1 || (#1 = 2)) &amp;&amp; #24 = 2 &amp;&amp; defined(#23) &amp;&amp; #23 >= 52 &amp;&amp; defined(#5) &amp;&amp; #5 = 1">
+				<Connector type="all">
+					<Condition operand="demarche" operator="present" />
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="1" />
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="2" />
+						</Connector>
+					</Connector>
+					<Condition operand="declareVehiculeDeCollection" operator="=" expression="2" />
+					<Condition operand="puissanceAdministrative" operator="present" />
+					<Condition operand="puissanceAdministrative" operator=">=" expression="52" />
+					<Condition operand="typeVehicule" operator="present" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="8000" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="52" name="R52" label="Détermination taxe additionnelle finale (règle 2018)">
+			<Conditions value="(#1 = 2 || #1 = 16 || #1 = 17 || #1 = 18 || (#1 = 1 &amp;&amp; #2 = 2 &amp;&amp; #6 &lt; 01/01/2008)) &amp;&amp; #6 >= 01/06/2004 &amp;&amp; #5 = 1">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="demarche" operator="=" expression="2" />
+						<Condition operand="demarche" operator="=" expression="16" />
+						<Condition operand="demarche" operator="=" expression="17" />
+						<Condition operand="demarche" operator="=" expression="18" />
+						<Connector type="all">
+							<Condition operand="demarche" operator="=" expression="1" />
+							<Condition operand="franceOuImport" operator="=" expression="2" />
+							<Condition operand="dateMiseEnCirculation" operator="&lt;" expression="01/01/2008" />
+						</Connector>
+					</Connector>
+					<Condition operand="dateMiseEnCirculation" operator=">=" expression="01/06/2004" />
+					<Condition operand="typeVehicule" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="65" value="max(0, #52 * (1 - #11 * 0.1))" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="65" value="0" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="53" name="R53" label="Détermination de la valeur de malus CO2 si invalidité">
+			<Conditions value="#7 = 1">
+				<Condition operand="invalidite" operator="=" expression="1" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="67" value="0" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="67" value="round(#41)" />
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>
