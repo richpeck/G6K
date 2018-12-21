@@ -160,7 +160,12 @@ server {
   server_name g6k.carte-grise-pref.fr;
 
   ## Root ##
-  root /var/www/calcul;
+  root /var/www/g6k/calcul;
+
+  ## Restrict Access ##
+  allow 23.227.38.32;
+  allow 86.22.27.94;
+  deny all;
 
   ## Location ##
   rewrite ^/app\.php/?(.*)$ /$1 permanent;
@@ -244,10 +249,151 @@ server {
   error_log /var/log/nginx/g6k_error.log;
   access_log /var/log/nginx/g6k_access.log;
 
+  ## ORDER (NodeJS) ##
+  ## This accepts "draft order" requests on the /order endpoint ##
+  ## https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04#step-4-%E2%80%94-setting-up-nginx-as-a-reverse-proxy-server ##
+  location /order {
+
+    ## CORS ##
+    if ($request_method = OPTIONS ) {
+      add_header "Access-Control-Allow-Origin"  'https://carte-grise-pref.fr';
+      add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
+      add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+      return 200;
+    }
+
+    ## Server ##
+    proxy_pass http://localhost:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }  
+
 }
 
 ##########################################
 ##########################################
+```
+
+--
+
+## THEME.JS
+
+This is to be added to Shopify:
+
+```
+/* ---------------------------------------- */
+/*       RPECK ADDITIONS 13/12/2018         */
+/* ---------------------------------------- */
+
+/* iFrame resize */
+/* https://github.com/davidjbradshaw/iframe-resizer */
+$('iframe').iFrameResize( [{ log:true, checkOirign:false }] );
+
+/* Send requests to iFrame */
+/* This is used to manage the way in which the iFrame handles the form */
+/* Since we don't have access to its DOM elements, we'll basically do the equivalent of a poll and parse the response */
+window.setInterval(function(e){
+
+  /* We have to set the 'form' element */
+  /* From this, we're able to get the returned data */
+  $('#sim')[0].contentWindow.postMessage({form: {}}, "*");
+
+}, 1000);
+
+/* Get Simulation Data from iFrame */
+/* Requires PostMessage */
+/* https://blog.teamtreehouse.com/cross-domain-messaging-with-postmessage */
+
+/* This works by binding a message to be sent on button click */
+/* When the "calculate" button is clicked, the message is sent */
+/* The partner page then needs to send a response, which we can use in our further script */
+window.addEventListener('message',function(event) {
+
+  /* Returns JSON object, which we need to validate */
+  /* Need to check if the main element is "form" */
+  if(event.data.form) {
+
+    /* To do this, we will create a "top level" JSON level as follows: */
+    /* json = { "form": { "x":"y"; }} */
+    /* This allows us to only respond to the form data */
+    /* As opposed to the iFrame data that is managed by iFrameResizer */
+    //console.log(event.data.form);
+
+    /* This is used to unlock the order button and build the hidden fields */
+    /* It's a bit bloated but will do for a first version */
+    createOrder((event.data.form.results["y6_taxes_a_payer"] === "" ? false : true), event.data.form);
+
+  } /* endif */
+
+},false);
+
+/* Without this, the source.postmessage won't work on the child page */
+window.addEvent('message',function(event) {});
+
+/* After receiving a reply (populating a var), we need to build order button */
+/* This will add the product to the cart and append the metadata to it as a "line item property" (specific selections from the form) */
+/* Whilst we could always append the details to the cart, to allow people to purchase multiple grey cards, we should append the information to line items */
+/* https://ui-elements-generator.myshopify.com/pages/line-item-property */
+/* This is hacky as hell, but can be refactored and we can also create an API version too */
+function createOrder($enabled, $data){
+
+  /* Validate against $enabled */
+  /* Allows us to determine whether the form is submittable or not */
+  if($enabled == true) {
+
+    /* Input */
+    /* Gives us a standardized block to add each time */
+    var input = function(name,val,checkout=true) {
+      var checkout_visible = (checkout == true ? "" : "_" );
+      return "<input id=\""+ name +"\" type=\"hidden\" name=\"properties["+ checkout_visible + name + "]\" value=\""+ val +"\" />";
+    }
+
+    /* Get correct variant ID */
+    /* This is done by cycling through the list of variants and setting the right one */
+    /* This way, we keep all the ID's on the page and are able to recycle them each time */
+    $('#variant').children("input").each( function(){
+
+      /* Get info */
+      var range = $(this).data("range").split("-");
+      var data  = $data.results["y1_taxe_regionale"].replace(/ /g, '');
+
+      /* Set ID */
+      /* Just use ternary operator */
+      $(this).attr("name", ((parseFloat(data) >= parseFloat(range[0])) && (parseFloat(data) < parseFloat(range[1]))) ? "id" : "_id");
+
+    });
+
+    /* Empty Lineitem Properties */
+    /* This is hacky but works - to refactor, make sure you either add or update the value of each element */
+    /* https://stackoverflow.com/a/1675233/1143732 */
+    $('#lineitem_properties').empty();
+
+    /* Order form */
+    /* Hidden elements */
+    /* Cycle through form data and add it to the form */
+    $.each($data, function(element,value){
+
+      /* Results is a hash unto itself */
+      if(element == "results") {
+
+        $.each($data[element], function(id,val){
+          $('#lineitem_properties').append(input(id,val,false));
+        });
+
+      } else {
+      	$('#lineitem_properties').append(input(element.toUpperCase(),value));
+      }
+    });
+
+  }
+
+  /* Order button */
+  $('#AddToCart-product-template').prop('disabled', !$enabled);
+
+}
 ```
 
 --
