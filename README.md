@@ -167,8 +167,30 @@ server {
   allow 86.22.27.94;
   deny all;
 
-  ## Location ##
+  ## G6K App ##
   rewrite ^/app\.php/?(.*)$ /$1 permanent;
+
+  ## ORDER (NodeJS) ##
+  ## This accepts "draft order" requests on the /order endpoint ##
+  ## Needs to be here otherwise the other scripts could overwrite it ##
+  ## https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04#step-4-%E2%80%94-setting-up-nginx-as-a-reverse-proxy-server ##
+  location ~ ^/order($|/.*$) {
+
+    ## CORS ##
+    if ($request_method = 'POST') {
+      add_header "Access-Control-Allow-Origin"  "https://carte-grise-pref.fr";
+      add_header "Access-Control-Allow-Methods" "POST";
+      add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+    }
+
+    ## Server ##
+    proxy_pass http://localhost:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }  
 
   ## PHP ##
   try_files $uri @rewriteapp;
@@ -249,33 +271,17 @@ server {
   error_log /var/log/nginx/g6k_error.log;
   access_log /var/log/nginx/g6k_access.log;
 
-  ## ORDER (NodeJS) ##
-  ## This accepts "draft order" requests on the /order endpoint ##
-  ## https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04#step-4-%E2%80%94-setting-up-nginx-as-a-reverse-proxy-server ##
-  location /order {
-
-    ## CORS ##
-    if ($request_method = OPTIONS ) {
-      add_header "Access-Control-Allow-Origin"  'https://carte-grise-pref.fr';
-      add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
-      add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
-      return 200;
-    }
-
-    ## Server ##
-    proxy_pass http://localhost:3000;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }  
-
 }
 
 ##########################################
 ##########################################
 ```
+--
+
+## NODE
+
+Setup the PM2 Server:
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04#step-4-%E2%80%94-setting-up-nginx-as-a-reverse-proxy-server
 
 --
 
