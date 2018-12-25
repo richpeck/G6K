@@ -166,8 +166,8 @@ server {
   ## I originally presumed an iFrame would use the server's IP ##
   ## Unfortunately, I was wrong, so need to be a bit more creative with how to do it ##
   ## http://nginx.org/en/docs/http/ngx_http_referer_module.html ##
-  valid_referers server_names carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
-  if ($invalid_referer) { return 403; }
+  #valid_referers server_names carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
+  #if ($invalid_referer) { return 403; }
 
   ## G6K App ##
   rewrite ^/app\.php/?(.*)$ /$1 permanent;
@@ -178,20 +178,46 @@ server {
   ## https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04#step-4-%E2%80%94-setting-up-nginx-as-a-reverse-proxy-server ##
   location ~ ^/order($|/.*$) {
 
-    ## CORS ##
+    ## Restrict Access ##
+    ## This should be in the main block but has to be here ##
+    ## There is no reason to gain access to this beyond the need of testing ##
+    valid_referers server_names none carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
+    if ($invalid_referer) { return 403; }
+
+    ## !GET/POST ##
+    ## Don't need to provide functionality to others ##
+    ## https://bjornjohansen.no/restrict-allowed-http-methods-in-nginx ##
+    if ($request_method !~ ^(GET|POST|HEAD)$) { return 403; }
+
+    ## POST ##
+    ## This is where the API transaction happens ##
+    ## Only accepts referrers from our domains ##
     if ($request_method = 'POST') {
+
+      ## CORS ##
+      ## Allows us to define which site/domain is able to send JS data ##
+      ## Not 100% secure but should be helpful ##
       add_header "Access-Control-Allow-Origin"  "https://carte-grise-pref.fr";
       add_header "Access-Control-Allow-Methods" "POST";
       add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+
     }
 
     ## Server ##
+    ## This needs to match a PM2 instance running NodeJS ##
     proxy_pass http://localhost:3000;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';
     proxy_set_header Host $host;
     proxy_cache_bypass $http_upgrade;
+
+    ## GET ##
+    ## This is used for testing, so we need to allow users to access the resource ##
+    ## For this, we can use just whitelist the development IP ##
+    allow 86.22.27.94;
+    deny all;
+
   }  
 
   ## PHP ##
@@ -199,12 +225,34 @@ server {
 
   ## Admin ##
   location /admin {
+
+    ## Forward requests to /app_admin.php ##
     rewrite ^(.*)$ /app_admin.php/$1 last;
+
+    ## Access ##
+    ## Only allow GET requests from dev IP ##
+    allow 86.22.27.94;
+    deny all;
+
   }
 
   ## Main ##
   location @rewriteapp {
+
+    ## Restrict Access ##
+    ## This should be in the main block but has to be here ##
+    ## There is no reason to gain access to this beyond the need of testing ##
+    valid_referers server_names carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
+    if ($invalid_referer) { return 403; }
+
+    ## Forward requests to /app.php ##
     rewrite ^(.*)$ /app.php/$1 last;
+
+    ## Access ##
+    ## Only allow GET requests from our dev IP ##
+    allow 86.22.27.94;
+    deny all;
+
   }
 
   ## SSL ##
@@ -217,6 +265,11 @@ server {
   ## Symfony ##
   ## PRODUCTION ENV ##
   location ~ ^/(app|app_admin)\.php(/|$) {
+
+    ## Restrict Access ##
+
+    ## PHP ##
+    ## Remember to change php7.2-fpm to the current version of PHP ##
     fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
     fastcgi_split_path_info ^(.+\.php)(/.*)$;
     include fastcgi_params;
@@ -254,6 +307,11 @@ server {
     return 404;
   }
 
+  ## 403 Error Pages ##
+  ## https://www.cyberciti.biz/faq/howto-nginx-customizing-404-403-error-page/ ##
+  ## 403 page stored in /var/www/g6k/calcul/403.html - need to change but whatever ##
+  error_page 403 403.html;
+
   ## DENY ALL . FILES ##
   ## Don't need to use Apache's stuff in NGinx ##
   location ~ /\. {
@@ -278,6 +336,7 @@ server {
 ##########################################
 ##########################################
 ```
+
 --
 
 ## NODE
