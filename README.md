@@ -163,9 +163,11 @@ server {
   root /var/www/g6k/calcul;
 
   ## Restrict Access ##
-  allow 23.227.38.32;
-  allow 86.22.27.94;
-  deny all;
+  ## I originally presumed an iFrame would use the server's IP ##
+  ## Unfortunately, I was wrong, so need to be a bit more creative with how to do it ##
+  ## http://nginx.org/en/docs/http/ngx_http_referer_module.html ##
+  valid_referers server_names carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
+  if ($invalid_referer) { return 403; }
 
   ## G6K App ##
   rewrite ^/app\.php/?(.*)$ /$1 permanent;
