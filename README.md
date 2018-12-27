@@ -276,12 +276,6 @@ server {
   ##############
   location @rewriteapp {
 
-    ## Restrict Access ##
-    ## This should be in the main block but has to be here ##
-    ## There is no reason to gain access to this beyond the need of testing ##
-    valid_referers server_names carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
-    if ($invalid_referer) { return 403; }
-
     ## Forward requests to /app.php ##
     rewrite ^(.*)$ /app.php/$1 last;
 
@@ -298,7 +292,10 @@ server {
   location ~ ^/(app|app_admin)\.php(/|$) {
 
     ## Restrict Access ##
-    ## May need to restrict access to this ##
+    ## Need to restrict access to this ##
+    ## Only want the site being pulled via iframe (as /order) and the dev domain ##
+    valid_referers server_names none carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
+    if ($invalid_referer) { return 403; }
 
     ## PHP ##
     ## Remember to change php7.2-fpm to the current version of PHP ##
@@ -318,7 +315,17 @@ server {
     # http://domain.tld/app.php/some-path
     # Remove the internal directive to allow URIs like this
     internal;
+
+    ## DEV ##
+    ## This is used for testing, so we need to allow users to access the resource ##
+    ## For this, we can use just whitelist the development IP ##
+    allow 86.22.27.94;
+    deny all;
+
   }
+
+  #####################################################
+  #####################################################
 
   ################
   ##   Assets   ##
