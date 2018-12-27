@@ -132,7 +132,7 @@ return 301 https://g6k.carte-grise-pref.fr$request_uri;
 ```
 
 ```
-# /etc/nginx/sites-enabled/your-site.com
+# /etc/nginx/sites-enabled/carte-grise-pref.fr
 
 ##########################################
 ##########################################
@@ -151,6 +151,9 @@ return 301 https://g6k.carte-grise-pref.fr$request_uri;
 ## HTTPS ##
 server {
 
+  #####################################################
+  #####################################################
+
   ## Ports ##
   listen 443 ssl;
   listen [::]:443 ssl;
@@ -159,21 +162,33 @@ server {
   ## Only accept WWW ##
   server_name g6k.carte-grise-pref.fr;
 
+  #####################################################
+  #####################################################
+
+  ## SSL ##
+  include /etc/nginx/ssl.conf;
+
+  ## Certs ##
+  ssl_certificate     /etc/letsencrypt/live/g6k.carte-grise-pref.fr/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/g6k.carte-grise-pref.fr/privkey.pem;
+
+  #####################################################
+  #####################################################
+
   ## Root ##
+  ## This is meant to provide a default "root" from which every part of the app is served ##
+  ## Each location block can override this ##
+  ## https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/#root-inside-location-block ##
   root /var/www/g6k/calcul;
 
-  ## Restrict Access ##
-  ## I originally presumed an iFrame would use the server's IP ##
-  ## Unfortunately, I was wrong, so need to be a bit more creative with how to do it ##
-  ## http://nginx.org/en/docs/http/ngx_http_referer_module.html ##
-  #valid_referers server_names carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
-  #if ($invalid_referer) { return 403; }
+  #####################################################
+  #####################################################
 
-  ## G6K App ##
-  rewrite ^/app\.php/?(.*)$ /$1 permanent;
-
+  ####################
   ## ORDER (NodeJS) ##
-  ## This accepts "draft order" requests on the /order endpoint ##
+  ####################
+
+  ## This accepts "draft order" requests on the /order [POST] endpoint ##
   ## Needs to be here otherwise the other scripts could overwrite it ##
   ## https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04#step-4-%E2%80%94-setting-up-nginx-as-a-reverse-proxy-server ##
   location ~ ^/order($|/.*$) {
@@ -191,7 +206,7 @@ server {
 
     ## POST ##
     ## This is where the API transaction happens ##
-    ## Only accepts referrers from our domains ##
+    ## Only accepts referrers from the Shopify store ##
     if ($request_method = 'POST') {
 
       ## CORS ##
@@ -220,10 +235,30 @@ server {
 
   }  
 
+  #####################################################
+  #####################################################
+
+  ####################
+  ##   MAIN (G6K)   ##
+  ####################
+
+  ## General Rewrite ##
+  rewrite ^/app\.php/?(.*)$ /$1 permanent;
+
+  ## Restrict Access ##
+  ## I originally presumed an iFrame would use the server's IP ##
+  ## Unfortunately, I was wrong, so need to be more creative with how to do it ##
+  ## http://nginx.org/en/docs/http/ngx_http_referer_module.html ##
+  valid_referers server_names none carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
+  if ($invalid_referer) { return 403; }
+
   ## PHP ##
+  ## Sends all the /x requests to the @rewriteapp location ##
   try_files $uri @rewriteapp;
 
-  ## Admin ##
+  ###############
+  ##   Admin   ##
+  ###############
   location /admin {
 
     ## Forward requests to /app_admin.php ##
@@ -236,7 +271,9 @@ server {
 
   }
 
-  ## Main ##
+  ##############
+  ##   Main   ##
+  ##############
   location @rewriteapp {
 
     ## Restrict Access ##
@@ -255,18 +292,13 @@ server {
 
   }
 
-  ## SSL ##
-  include /etc/nginx/ssl.conf;
-
-  ## Certs ##
-  ssl_certificate     /etc/letsencrypt/live/g6k.carte-grise-pref.fr/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/g6k.carte-grise-pref.fr/privkey.pem;
-
-  ## Symfony ##
-  ## PRODUCTION ENV ##
+  #################
+  ##   Symfony   ##
+  #################
   location ~ ^/(app|app_admin)\.php(/|$) {
 
     ## Restrict Access ##
+    ## May need to restrict access to this ##
 
     ## PHP ##
     ## Remember to change php7.2-fpm to the current version of PHP ##
@@ -288,13 +320,31 @@ server {
     internal;
   }
 
+  ################
+  ##   Assets   ##
+  ################
+  location ~ /(bundles|media) {
+    access_log off;
+    expires 30d;
+    try_files $uri @rewriteapp;
+  }
+
+  #####################################################
+  #####################################################
+
+  ####################
+  ##     Extras     ##
+  ####################
+
   ## Favicons ##
+  ## Keep favicons out of the logs ##
   location = /favicon.ico {
     access_log     off;
     log_not_found  off;
   }
 
-  # static file 404's aren't logged and expires header is set to maximum age
+  ## Static ##
+  ## Don't track static images etc ##
   location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
     access_log off;
     expires max;
@@ -307,24 +357,19 @@ server {
     return 404;
   }
 
-  ## 403 Error Pages ##
+  ## Error Pages ##
   ## https://www.cyberciti.biz/faq/howto-nginx-customizing-404-403-error-page/ ##
-  ## 403 page stored in /var/www/g6k/calcul/403.html - need to change but whatever ##
-  error_page 403 403.html;
+  error_page 403 /403;
+  location /403 {
+    root /var/www;
+    try_files $uri.html =404;
+    internal; ## Shows the page without changing URL ##
+  }
 
-  ## DENY ALL . FILES ##
+  ## DENY . FILES ##
   ## Don't need to use Apache's stuff in NGinx ##
   location ~ /\. {
     deny  all;
-  }
-
-  ## STATIC ASSETS ##
-  ## Used to store images, CSS/JS etc ##
-  location /(bundles|media) {
-    access_log off;
-    expires 30d;
-
-    try_files $uri @rewriteapp;
   }
 
   ## LOGS ##
@@ -333,8 +378,8 @@ server {
 
 }
 
-##########################################
-##########################################
+#####################################################
+#####################################################
 ```
 
 --
