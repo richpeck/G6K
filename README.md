@@ -196,13 +196,14 @@ server {
     ## Restrict Access ##
     ## This should be in the main block but has to be here ##
     ## There is no reason to gain access to this beyond the need of testing ##
-    valid_referers server_names none carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
+    valid_referers server_names carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
     if ($invalid_referer) { return 403; }
 
-    ## !GET/POST ##
+    ## GET/POST ##
     ## Don't need to provide functionality to others ##
     ## https://bjornjohansen.no/restrict-allowed-http-methods-in-nginx ##
-    if ($request_method !~ ^(GET|POST|HEAD)$) { return 403; }
+    ## https://serverfault.com/a/905922 ##
+    limit_except POST { deny all; }
 
     ## POST ##
     ## This is where the API transaction happens ##
@@ -230,8 +231,9 @@ server {
     ## GET ##
     ## This is used for testing, so we need to allow users to access the resource ##
     ## For this, we can use just whitelist the development IP ##
-    allow 86.22.27.94;
-    deny all;
+    ## DON'T NEED THIS IF ONLY USING USING POST ##
+    #allow 86.22.27.94;
+    #deny all;
 
   }  
 
@@ -260,30 +262,14 @@ server {
   ##   Admin   ##
   ###############
   location /admin {
-
-    ## Forward requests to /app_admin.php ##
     rewrite ^(.*)$ /app_admin.php/$1 last;
-
-    ## Access ##
-    ## Only allow GET requests from dev IP ##
-    allow 86.22.27.94;
-    deny all;
-
   }
 
   ##############
   ##   Main   ##
   ##############
   location @rewriteapp {
-
-    ## Forward requests to /app.php ##
     rewrite ^(.*)$ /app.php/$1 last;
-
-    ## Access ##
-    ## Only allow GET requests from our dev IP ##
-    allow 86.22.27.94;
-    deny all;
-
   }
 
   #################
@@ -294,7 +280,7 @@ server {
     ## Restrict Access ##
     ## Need to restrict access to this ##
     ## Only want the site being pulled via iframe (as /order) and the dev domain ##
-    valid_referers server_names none carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
+    valid_referers server_names carte-grise-pref.fr cartegrise-pref-fr.myshopify.com;
     if ($invalid_referer) { return 403; }
 
     ## PHP ##
@@ -319,8 +305,10 @@ server {
     ## DEV ##
     ## This is used for testing, so we need to allow users to access the resource ##
     ## For this, we can use just whitelist the development IP ##
-    allow 86.22.27.94;
-    deny all;
+    ## https://serverfault.com/a/638218 ##
+    if ($http_referer = "") {
+      return 403;
+    }
 
   }
 
@@ -366,9 +354,9 @@ server {
 
   ## Error Pages ##
   ## https://www.cyberciti.biz/faq/howto-nginx-customizing-404-403-error-page/ ##
+  ## Stored at /var/www/g6k/calcul/403.html ##
   error_page 403 /403;
   location /403 {
-    root /var/www;
     try_files $uri.html =404;
     internal; ## Shows the page without changing URL ##
   }
