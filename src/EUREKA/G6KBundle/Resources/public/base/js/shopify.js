@@ -8,9 +8,13 @@
 // https://davidwalsh.name/window-postmessage
 window.addEventListener('message',function(event) {
 
-    /* Only reply to the store */
-    /* Security stuff */
+  /* Only reply to the store */
+  /* Security stuff */
 	if(event.origin !== 'https://carte-grise-pref-fr') return;
+
+	/* Form submit management */
+	/* RPECK Added 30/12/2018 */
+	if(event.data == "calcul") $('button[name="calculer"]').trigger("click");
 
 	/* Parse data and determine if it's something the screen needs */
 	/* This is to counteract the iFrameResizer we have on the parent page */

@@ -53,6 +53,10 @@ However, on some platforms, this message does not appear. If so, run the followi
 
 ## NGINX
 
+Two apps -
+  - `/var/www/order` (NodeJS app)
+  - `/var/www/g6k`   (G6K app)
+
 ```
 # /etc/nginx/sites-enabled/default
 
